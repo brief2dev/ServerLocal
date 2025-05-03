@@ -9,10 +9,16 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: Server*90
     volumes:
-    - ./mysql-data:/var/lib/mysql
-    - ./initdb:/docker-entrypoint-initdb.d
+      - ./mysql-data:/var/lib/mysql
+      - ./initdb:/docker-entrypoint-initdb.d
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
     restart: unless-stopped
-# para conexiones externas escucha el puerto 3307 y apunta a 3306 del contenedor no de produccion
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin-dev
@@ -23,3 +29,5 @@ services:
       PMA_PORT: 3306
     depends_on:
       - mysql-dev
+    volumes:
+      - ./phpmyadmin.ini:/usr/local/etc/php/conf.d/phpmyadmin.ini
