@@ -9,7 +9,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - ./initdb:/docker-entrypoint-initdb.d
+    - ./mysql-data:/var/lib/mysql
+    - ./initdb:/docker-entrypoint-initdb.d
     restart: unless-stopped
 # para conexiones externas escucha el puerto 3307 y apunta a 3306 del contenedor no de produccion
   phpmyadmin:
