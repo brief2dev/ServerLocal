@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  mysql-dev:
+    image: mysql:5.7
+    container_name: mysql-dev
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+# para conexiones externas escucha el puerto 3307 y apunta a 3306 del contenedor no de produccion
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-dev
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql-dev
+      PMA_PORT: 3306
+    depends_on:
+      - mysql-dev

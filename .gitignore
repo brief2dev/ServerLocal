@@ -1,0 +1,4 @@
+# Volúmenes de MySQL
+mysql-data/
+# Archivos temporales
+*.tar
