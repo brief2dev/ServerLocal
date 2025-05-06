@@ -31,3 +31,4 @@ services:
       - mysql-dev
     volumes:
       - ./phpmyadmin.ini:/usr/local/etc/php/conf.d/phpmyadmin.ini
+    restart: unless-stopped
