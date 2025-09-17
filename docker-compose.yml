@@ -1,27 +1,19 @@
 version: "3.9"
 
 services:
-  apache:
-    image: httpd:2.4
-    container_name: apache_server
+  php-apache:
+    image: php:8.4-apache
+    container_name: apache24Dev
     ports:
       - "8080:80"
-      - "443:443"
-    volumes:
-      - ./Host:/usr/local/apache2/htdocs
-    restart: always   # se reinicia siempre al arrancar el sistema
-
-  php:
-    image: php:8.4-apache
-    container_name: php_server
     volumes:
       - ./Host:/var/www/html
-      - ./php.ini:/usr/local/etc/php/conf.d/custom.ini  
-    restart: always   # lo mismo
+      - ./php.ini:/usr/local/etc/php/conf.d/custom.ini
+    restart: always
 
   mysql:
     image: mysql:9.2
-    container_name: mysql_server
+    container_name: sqlService
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
       MYSQL_DATABASE: mydb
@@ -31,20 +23,20 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./my.cnf:/etc/mysql/conf.d/my.cnf  
-    restart: always   # mantiene la base activa
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
+    restart: always
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: dev-phpmyadmin
+    container_name: sqlMyAdmin
     restart: always
     ports:
       - "8081:80"
     environment:
-      PMA_HOST: db
-      PMA_USER: devuser      
-      PMA_PASSWORD: devpass   
-      MYSQL_ROOT_PASSWORD: root
+      PMA_HOST: mysql
+      PMA_USER: user
+      PMA_PASSWORD: userpass
+      MYSQL_ROOT_PASSWORD: rootpass
 
 volumes:
   mysql_data:
