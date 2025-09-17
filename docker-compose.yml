@@ -5,10 +5,10 @@ services:
     image: httpd:2.4
     container_name: apache_server
     ports:
-      - "80:80"
+      - "8080:80"
       - "443:443"
     volumes:
-      - ./filesServer:/usr/local/apache2/htdocs
+      - ./Host:/usr/local/apache2/htdocs
     restart: always   # se reinicia siempre al arrancar el sistema
 
   php:
@@ -31,8 +31,20 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./mysql-conf/my.cnf:/etc/mysql/conf.d/my.cnf  
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf  
     restart: always   # mantiene la base activa
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: dev-phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: devuser      
+      PMA_PASSWORD: devpass   
+      MYSQL_ROOT_PASSWORD: root
 
 volumes:
   mysql_data:
