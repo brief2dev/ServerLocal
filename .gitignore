@@ -1,4 +1,4 @@
-# Volúmenes de MySQL
-mysql-data/
-# Archivos temporales
-*.tar
+.DS_Store
+Apps
+Host/*      # Ignora todo dentro de Host
+!Host/      # Pero no ignores la carpeta en sí

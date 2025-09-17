@@ -1,34 +1,38 @@
-version: '3.8'
+version: "3.9"
 
 services:
-  mysql-dev:
-    image: mysql:8.0
-    container_name: mysql-dev
+  apache:
+    image: httpd:2.4
+    container_name: apache_server
     ports:
-      - "3307:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: Server*90
+      - "80:80"
+      - "443:443"
     volumes:
-      - ./mysql-data:/var/lib/mysql
-      - ./initdb:/docker-entrypoint-initdb.d
-      - ./my.cnf:/etc/mysql/conf.d/my.cnf
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      - ./filesServer:/usr/local/apache2/htdocs
+    restart: always   # se reinicia siempre al arrancar el sistema
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin-dev
-    ports:
-      - "8080:80"
-    environment:
-      PMA_HOST: mysql-dev
-      PMA_PORT: 3306
-    depends_on:
-      - mysql-dev
+  php:
+    image: php:8.4-apache
+    container_name: php_server
     volumes:
-      - ./phpmyadmin.ini:/usr/local/etc/php/conf.d/phpmyadmin.ini
-    restart: unless-stopped
+      - ./Host:/var/www/html
+      - ./php.ini:/usr/local/etc/php/conf.d/custom.ini  
+    restart: always   # lo mismo
+
+  mysql:
+    image: mysql:9.2
+    container_name: mysql_server
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql-conf/my.cnf:/etc/mysql/conf.d/my.cnf  
+    restart: always   # mantiene la base activa
+
+volumes:
+  mysql_data:
