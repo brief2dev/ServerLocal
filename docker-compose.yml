@@ -4,6 +4,7 @@ services:
   php-apache:
     image: php:8.4-apache
     container_name: apache24Dev
+    build: .
     ports:
       - "8080:80"
     volumes:
