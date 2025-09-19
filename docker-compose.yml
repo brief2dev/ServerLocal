@@ -1,5 +1,5 @@
 version: "3.9"
-
+#Quitar los contanier_name en produccion?
 services:
   php-apache:
     image: php:8.4-apache
@@ -7,8 +7,11 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./Host:/var/www/html
+      - ./Host:/var/www/html:rw
       - ./php.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./apache.conf:/etc/apache2/conf-enabled/000-custom.conf
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html/public
     restart: always
 
   mysql:
@@ -28,6 +31,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    platform: linux/amd64
     container_name: sqlMyAdmin
     restart: always
     ports:
