@@ -1,4 +1,4 @@
 .DS_Store
 Apps
 Host/*      # Ignora todo dentro de Host
-!Host/      # Pero no ignores la carpeta en sí
+!Host/      # Pero no ignores la carpeta en sí =>
