@@ -17,15 +17,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Base de datos: `SE_Municipio`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `Administraciones`
---
 
 CREATE TABLE `Administraciones` (
   `ID_Administracion` int NOT NULL,
@@ -620,7 +611,7 @@ ALTER TABLE `ZMisc`
 -- AUTO_INCREMENT de la tabla `Administraciones`
 --
 ALTER TABLE `Administraciones`
-  MODIFY `ID_Administracion` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_Administracion` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `Api_Boleano`
@@ -632,13 +623,13 @@ ALTER TABLE `Api_Boleano`
 -- AUTO_INCREMENT de la tabla `Api_Colonias`
 --
 ALTER TABLE `Api_Colonias`
-  MODIFY `ID_Colonia` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_Colonia` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `API_Comisarias`
 --
 ALTER TABLE `API_Comisarias`
-  MODIFY `ID_Comisaria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_Comisaria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `Api_Estatus`
@@ -656,7 +647,7 @@ ALTER TABLE `Api_Pago`
 -- AUTO_INCREMENT de la tabla `Ciudadanos`
 --
 ALTER TABLE `Ciudadanos`
-  MODIFY `ID_Ciudadano` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_Ciudadano` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `Ciudadanos_Card`
@@ -665,13 +656,13 @@ ALTER TABLE `Ciudadanos_Card`
   MODIFY `ID_Card` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `Colaboradores`
+-- AUTO_INCREMENT de la tabla `Colaboradores` 13
 --
 ALTER TABLE `Colaboradores`
-  MODIFY `ID_Colaborador` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID_Colaborador` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `Departamentos`
+-- AUTO_INCREMENT de la tabla `Departamentos` 34
 --
 ALTER TABLE `Departamentos`
   MODIFY `ID_Departamento` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
