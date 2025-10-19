@@ -1,9 +1,10 @@
 version: "3.9"
 #Quitar los contanier_name en produccion?
 services:
+
   php-apache:
     image: php:8.4-apache
-    container_name: apache24Dev
+    container_name: apchDev
     build: .
     ports:
       - "8080:80"
@@ -17,7 +18,7 @@ services:
 
   mysql:
     image: mysql:9.2
-    container_name: sqlService
+    container_name: sqlDev
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -27,14 +28,14 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      #- ./dataBases:/docker-entrypoint-initdb.d 
+      #- ./dataBases:/docker-entrypoint-initdb.d //inicia las base de datos que estan en la carpeta
       - ./my.cnf:/etc/mysql/conf.d/my.cnf
     restart: always
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    container_name: admDev
     platform: linux/amd64
-    container_name: sqlMyAdmin
     restart: always
     ports:
       - "8081:80"
