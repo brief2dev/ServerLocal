@@ -1,12 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 16-09-2025 a las 10:04:20
--- Versión del servidor: 8.3.0
--- Versión de PHP: 8.3.6
-
+-- Servidor: mysql
+-- Tiempo de generación: 19-10-2025 a las 18:19:27
+-- Versión del servidor: 9.2.0
+-- Versión de PHP: 8.2.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,6 +17,17 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Base de datos: `SE_Municipio`
+--
+CREATE DATABASE IF NOT EXISTS `SE_Municipio` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `SE_Municipio`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Administraciones`
+--
 
 CREATE TABLE `Administraciones` (
   `ID_Administracion` int NOT NULL,
@@ -45,30 +55,66 @@ CREATE TABLE `Administraciones` (
   `Concluido` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Api_Boleano`
+--
+
 CREATE TABLE `Api_Boleano` (
   `ID_Boleano` int NOT NULL,
   `Nombre` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Api_Colonias`
+--
 
 CREATE TABLE `Api_Colonias` (
   `ID_Colonia` int NOT NULL,
   `Nombre` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `API_Comisarias`
+--
+
 CREATE TABLE `API_Comisarias` (
   `ID_Comisaria` int NOT NULL,
   `Nombre` varchar(110) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Api_Estatus`
+--
 
 CREATE TABLE `Api_Estatus` (
   `ID_Estatus` int NOT NULL,
   `Nombre` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Api_Pago`
+--
+
 CREATE TABLE `Api_Pago` (
   `ID_Tipo_Pago` int NOT NULL,
   `Nombre` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Ciudadanos`
+--
 
 CREATE TABLE `Ciudadanos` (
   `ID_Ciudadano` int NOT NULL,
@@ -95,6 +141,12 @@ CREATE TABLE `Ciudadanos` (
   `Importado` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Ciudadanos_Card`
+--
+
 CREATE TABLE `Ciudadanos_Card` (
   `ID_Card` int NOT NULL,
   `Numero` varchar(17) DEFAULT NULL,
@@ -105,6 +157,12 @@ CREATE TABLE `Ciudadanos_Card` (
   `ID_Ciudadano` int DEFAULT NULL,
   `Direccion` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Colaboradores`
+--
 
 CREATE TABLE `Colaboradores` (
   `ID_Colaborador` int NOT NULL,
@@ -130,6 +188,12 @@ CREATE TABLE `Colaboradores` (
   `ID_Administracion` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Departamentos`
+--
+
 CREATE TABLE `Departamentos` (
   `ID_Departamento` int NOT NULL,
   `Nombre` varchar(20) NOT NULL,
@@ -148,10 +212,22 @@ CREATE TABLE `Departamentos` (
   `Visible` int DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Puestos`
+--
+
 CREATE TABLE `Puestos` (
   `ID_Puesto` int NOT NULL,
   `Nombre` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Reportes_Ciudadanos`
+--
 
 CREATE TABLE `Reportes_Ciudadanos` (
   `ID_Reporte` int NOT NULL,
@@ -172,10 +248,22 @@ CREATE TABLE `Reportes_Ciudadanos` (
   `ID_Administracion` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Sexo`
+--
+
 CREATE TABLE `Sexo` (
   `ID_Sexo` int NOT NULL,
   `Nombre` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ZMisc`
+--
 
 CREATE TABLE `ZMisc` (
   `ID_Misc` int NOT NULL,
@@ -185,46 +273,65 @@ CREATE TABLE `ZMisc` (
   `Corte` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Índices para tablas volcadas
+--
 
-
+--
 -- Indices de la tabla `Administraciones`
 --
 ALTER TABLE `Administraciones`
   ADD PRIMARY KEY (`ID_Administracion`);
 
-
+--
+-- Indices de la tabla `Api_Boleano`
+--
 ALTER TABLE `Api_Boleano`
   ADD PRIMARY KEY (`ID_Boleano`);
 
-
+--
+-- Indices de la tabla `Api_Colonias`
+--
 ALTER TABLE `Api_Colonias`
   ADD PRIMARY KEY (`ID_Colonia`);
 
-
+--
+-- Indices de la tabla `API_Comisarias`
+--
 ALTER TABLE `API_Comisarias`
   ADD PRIMARY KEY (`ID_Comisaria`);
 
-
+--
+-- Indices de la tabla `Api_Estatus`
+--
 ALTER TABLE `Api_Estatus`
   ADD PRIMARY KEY (`ID_Estatus`);
 
-
+--
+-- Indices de la tabla `Api_Pago`
+--
 ALTER TABLE `Api_Pago`
   ADD PRIMARY KEY (`ID_Tipo_Pago`);
 
-
+--
+-- Indices de la tabla `Ciudadanos`
+--
 ALTER TABLE `Ciudadanos`
   ADD PRIMARY KEY (`ID_Ciudadano`),
   ADD KEY `ID_Colonia` (`ID_Colonia`),
   ADD KEY `ID_Sexo` (`ID_Sexo`),
   ADD KEY `Foraneo` (`Foraneo`);
 
-
+--
+-- Indices de la tabla `Ciudadanos_Card`
+--
 ALTER TABLE `Ciudadanos_Card`
   ADD PRIMARY KEY (`ID_Card`),
   ADD KEY `ID_Ciudadano` (`ID_Ciudadano`);
 
-
+--
+-- Indices de la tabla `Colaboradores`
+--
 ALTER TABLE `Colaboradores`
   ADD PRIMARY KEY (`ID_Colaborador`),
   ADD KEY `ID_Ciudadano` (`ID_Ciudadano`),
@@ -233,16 +340,22 @@ ALTER TABLE `Colaboradores`
   ADD KEY `Baja` (`Baja`),
   ADD KEY `Acceso` (`Acceso`);
 
-
+--
+-- Indices de la tabla `Departamentos`
+--
 ALTER TABLE `Departamentos`
   ADD PRIMARY KEY (`ID_Departamento`),
   ADD KEY `Interno` (`Interno`);
 
-
+--
+-- Indices de la tabla `Puestos`
+--
 ALTER TABLE `Puestos`
   ADD PRIMARY KEY (`ID_Puesto`);
 
-
+--
+-- Indices de la tabla `Reportes_Ciudadanos`
+--
 ALTER TABLE `Reportes_Ciudadanos`
   ADD PRIMARY KEY (`ID_Reporte`),
   ADD KEY `ID_Ciudadano` (`ID_Ciudadano`),
@@ -251,79 +364,88 @@ ALTER TABLE `Reportes_Ciudadanos`
   ADD KEY `ID_Colaborador` (`ID_Colaborador`),
   ADD KEY `ID_Colonia` (`ID_Colonia`);
 
-
+--
+-- Indices de la tabla `Sexo`
+--
 ALTER TABLE `Sexo`
   ADD PRIMARY KEY (`ID_Sexo`);
 
+--
+-- Indices de la tabla `ZMisc`
+--
 ALTER TABLE `ZMisc`
   ADD PRIMARY KEY (`ID_Misc`),
   ADD KEY `ID_Dep` (`ID_Dep`);
 
-  --
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
 -- AUTO_INCREMENT de la tabla `Administraciones`
 --
 ALTER TABLE `Administraciones`
-  MODIFY `ID_Administracion` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Administracion` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `Api_Boleano`
 --
 ALTER TABLE `Api_Boleano`
-  MODIFY `ID_Boleano` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_Boleano` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `Api_Colonias`
 --
 ALTER TABLE `Api_Colonias`
-  MODIFY `ID_Colonia` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Colonia` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `API_Comisarias`
 --
 ALTER TABLE `API_Comisarias`
-  MODIFY `ID_Comisaria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Comisaria` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `Api_Estatus`
 --
 ALTER TABLE `Api_Estatus`
-  MODIFY `ID_Estatus` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_Estatus` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `Api_Pago`
 --
 ALTER TABLE `Api_Pago`
-  MODIFY `ID_Tipo_Pago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_Tipo_Pago` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `Ciudadanos`
 --
 ALTER TABLE `Ciudadanos`
-  MODIFY `ID_Ciudadano` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Ciudadano` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `Ciudadanos_Card`
 --
 ALTER TABLE `Ciudadanos_Card`
-  MODIFY `ID_Card` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_Card` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `Colaboradores` 13
+-- AUTO_INCREMENT de la tabla `Colaboradores`
 --
 ALTER TABLE `Colaboradores`
-  MODIFY `ID_Colaborador` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Colaborador` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `Departamentos` 34
+-- AUTO_INCREMENT de la tabla `Departamentos`
 --
 ALTER TABLE `Departamentos`
-  MODIFY `ID_Departamento` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `ID_Departamento` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `Puestos`
 --
 ALTER TABLE `Puestos`
-  MODIFY `ID_Puesto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `ID_Puesto` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `Reportes_Ciudadanos`
@@ -335,7 +457,7 @@ ALTER TABLE `Reportes_Ciudadanos`
 -- AUTO_INCREMENT de la tabla `Sexo`
 --
 ALTER TABLE `Sexo`
-  MODIFY `ID_Sexo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_Sexo` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ZMisc`
@@ -343,6 +465,13 @@ ALTER TABLE `Sexo`
 ALTER TABLE `ZMisc`
   MODIFY `ID_Misc` int NOT NULL AUTO_INCREMENT;
 
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `Ciudadanos`
+--
 ALTER TABLE `Ciudadanos`
   ADD CONSTRAINT `ciudadanos_ibfk_1` FOREIGN KEY (`ID_Colonia`) REFERENCES `Api_Colonias` (`ID_Colonia`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ciudadanos_ibfk_2` FOREIGN KEY (`ID_Sexo`) REFERENCES `Sexo` (`ID_Sexo`) ON DELETE CASCADE ON UPDATE CASCADE,

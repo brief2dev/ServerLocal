@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 16-09-2025 a las 10:03:53
--- Versión del servidor: 8.3.0
--- Versión de PHP: 8.3.6
+-- Servidor: mysql
+-- Tiempo de generación: 19-10-2025 a las 17:17:24
+-- Versión del servidor: 9.2.0
+-- Versión de PHP: 8.2.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,64 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `SE_Catastro`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `Cdl_Motiv`
---
-
-CREATE TABLE `Cdl_Motiv` (
-  `ID_Motivo` int NOT NULL,
-  `Nombre` varchar(125) DEFAULT NULL,
-  `Descripcion` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `Cedulas`
---
-
-CREATE TABLE `Cedulas` (
-  `ID_Cedula` int NOT NULL,
-  `ID_Propiedad` int DEFAULT NULL,
-  `Fecha` datetime DEFAULT NULL,
-  `Motivo` int DEFAULT NULL,
-  `ID_Personal` int DEFAULT NULL,
-  `Observ` varchar(850) DEFAULT NULL,
-  `ID_Administracion` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `Cobros`
---
-
-CREATE TABLE `Cobros` (
-  `ID_Cobro` int NOT NULL,
-  `ID_Personal` int DEFAULT NULL COMMENT 'ID del personal que genero el cobro',
-  `ID_Propiedad` int DEFAULT NULL,
-  `Fecha_Gen` datetime DEFAULT NULL COMMENT 'Fecha de generacion',
-  `Fecha_Cobro` datetime DEFAULT NULL COMMENT 'Fecha que se cobro',
-  `Subtotal` decimal(10,2) DEFAULT NULL,
-  `Total` decimal(10,2) DEFAULT NULL,
-  `Desc_Porc` decimal(10,2) DEFAULT NULL COMMENT 'Descuento en porcentaje',
-  `Desc_Peso` decimal(10,2) DEFAULT NULL COMMENT 'Descuento en pesos',
-  `ID_Cobrador` int DEFAULT NULL,
-  `Comentarios` varchar(850) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Tipo_Pago` int DEFAULT NULL COMMENT '1=Efectivo, 3=Tarjeta',
-  `Efectivo` int DEFAULT NULL COMMENT 'efectivo entregado',
-  `Cambio` int DEFAULT NULL COMMENT 'cambio devuelto',
-  `Corte` int DEFAULT '0' COMMENT '0=NO, 1=SI',
-  `ID_Corte` int DEFAULT NULL,
-  `Origen` int DEFAULT NULL COMMENT '1=app,2=web,3=ventanilla,4=comercios,5=domicilio',
-  `Verificado` int DEFAULT '0' COMMENT '0=NO, 1=SI',
-  `ID_Administracion` int DEFAULT NULL,
-  `ID_Movimiento` int DEFAULT NULL COMMENT 'Constancia, predial, verificacion, etc',
-  `ManualC` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0' COMMENT '0=NO, 1=SI'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `SE_Catastro` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `SE_Catastro`;
 
 --
 -- Volcado de datos para la tabla `Cobros`
@@ -363,19 +307,6 @@ INSERT INTO `Cobros` (`ID_Cobro`, `ID_Personal`, `ID_Propiedad`, `Fecha_Gen`, `F
 (306, 1, 1060, '2022-02-17 00:00:00', '2022-02-17 00:00:00', 1.00, 1.00, 0.00, 0.00, NULL, 'valor de referencia pago en 2022 pero sin recibo', 1, NULL, NULL, 0, NULL, 3, 1, 3, 328, '1'),
 (307, 1, 1060, '2025-09-11 00:00:00', '2025-09-12 00:00:00', 1257.19, 1257.00, 0.00, 0.00, 1, '', 1, NULL, NULL, 0, NULL, 3, 1, 3, 329, '0'),
 (308, 1, 618, '2025-09-11 10:34:44', '2025-09-12 00:00:00', 260.00, 260.00, 0.00, 0.00, 1, '', 1, NULL, NULL, 0, NULL, 3, 1, 3, 330, '0');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `CobrosDetalle`
---
-
-CREATE TABLE `CobrosDetalle` (
-  `ID_Detalle` int NOT NULL,
-  `ID_Servicio` int NOT NULL,
-  `Cantidad` int NOT NULL,
-  `ID_Cobro` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `CobrosDetalle`
@@ -718,18 +649,6 @@ INSERT INTO `CobrosDetalle` (`ID_Detalle`, `ID_Servicio`, `Cantidad`, `ID_Cobro`
 (355, 13, 1, 307),
 (356, 8, 2, 308);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `Cuadrante`
---
-
-CREATE TABLE `Cuadrante` (
-  `ID_Cuadrante` int NOT NULL,
-  `Nombre` varchar(50) DEFAULT NULL,
-  `Precio` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 --
 -- Volcado de datos para la tabla `Cuadrante`
 --
@@ -739,18 +658,6 @@ INSERT INTO `Cuadrante` (`ID_Cuadrante`, `Nombre`, `Precio`) VALUES
 (2, 'CUADRANTE 2', 50.00),
 (3, 'CUADRANTE 3', 30.00),
 (4, 'COMISARIA', 20.00);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `CuadranteRusticos`
---
-
-CREATE TABLE `CuadranteRusticos` (
-  `ID_Cuadrante` int NOT NULL,
-  `Nombre` varchar(30) DEFAULT NULL,
-  `Precio` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `CuadranteRusticos`
@@ -763,27 +670,6 @@ INSERT INTO `CuadranteRusticos` (`ID_Cuadrante`, `Nombre`, `Precio`) VALUES
 (4, 'HOTEL', 50000.00),
 (5, 'RESTAURANTE', 50000.00),
 (6, 'COMERCIO', 50000.00);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `Movimientos`
---
-
-CREATE TABLE `Movimientos` (
-  `ID_Movimiento` int NOT NULL,
-  `ID_Propiedad` int DEFAULT NULL,
-  `Anio` varchar(20) DEFAULT NULL COMMENT 'Solo aplicable a predial',
-  `CantidadAnios` int DEFAULT NULL COMMENT 'solo si es predial',
-  `Fecha` datetime DEFAULT NULL,
-  `Tipo` int DEFAULT NULL COMMENT 'Tipo de tramite',
-  `Comentarios` varchar(850) DEFAULT NULL,
-  `Observacion` varchar(300) DEFAULT NULL COMMENT 'comentarios de la propiedad si es fundo legar se pone los detalles y nimbre de la persona',
-  `Estatus` int DEFAULT NULL COMMENT '1=Pendiente, 2=Finalizado, 3=Pospuesto ',
-  `Migrado` int DEFAULT '0' COMMENT '0=NO, 1=SI',
-  `Pagado` int DEFAULT '0' COMMENT '0=NO, 1=SI',
-  `ID_Administracion` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `Movimientos`
@@ -1088,39 +974,6 @@ INSERT INTO `Movimientos` (`ID_Movimiento`, `ID_Propiedad`, `Anio`, `CantidadAni
 (329, 1060, '2025', 3, '2025-09-11 00:00:00', 13, NULL, NULL, 2, 0, 1, 3),
 (330, 618, NULL, NULL, '2025-09-11 10:34:44', 14, '', '', 2, 0, 1, 3);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `Oficios`
---
-
-CREATE TABLE `Oficios` (
-  `ID_Oficio` int NOT NULL,
-  `FechaOficio` timestamp NULL DEFAULT NULL,
-  `FechaSolicitud` timestamp NULL DEFAULT NULL,
-  `ID_Propiedad` int DEFAULT NULL,
-  `ID_Colaborador` int DEFAULT NULL,
-  `Tipo` int DEFAULT NULL COMMENT '1=Asignacion, 2=Division, 3=Rectificacion',
-  `Frente` decimal(15,2) DEFAULT NULL,
-  `Fondo` decimal(15,2) DEFAULT NULL,
-  `Area` decimal(15,2) DEFAULT NULL,
-  `Construcc` decimal(15,2) DEFAULT NULL,
-  `valCata` decimal(15,2) DEFAULT NULL,
-  `FrenteNew` decimal(15,2) DEFAULT NULL,
-  `FondoNew` decimal(15,2) DEFAULT NULL,
-  `AreaNew` decimal(15,2) DEFAULT NULL,
-  `ConstruccNew` decimal(15,2) DEFAULT NULL,
-  `valCataNew` decimal(15,2) DEFAULT NULL,
-  `Visible` int DEFAULT '1',
-  `Titulo` varchar(170) DEFAULT NULL,
-  `ID_Administracion` varchar(15) DEFAULT NULL,
-  `Destinatario` varchar(70) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Parrafo1` varchar(640) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Parrafo2` varchar(640) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Parrafo3` varchar(640) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Parrafo4` varchar(640) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 --
 -- Volcado de datos para la tabla `Oficios`
 --
@@ -1170,22 +1023,20 @@ INSERT INTO `Oficios` (`ID_Oficio`, `FechaOficio`, `FechaSolicitud`, `ID_Propied
 (79, '2025-08-20 06:00:00', '2025-07-28 06:00:00', 1522, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '3', NULL, NULL, NULL, NULL, NULL),
 (80, '2025-08-20 06:00:00', '2025-07-22 06:00:00', 1523, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '3', NULL, NULL, NULL, NULL, NULL),
 (81, '2025-08-20 06:00:00', '2025-08-08 06:00:00', 1550, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '3', NULL, NULL, NULL, NULL, NULL),
-(82, '2025-08-20 06:00:00', '2025-08-08 06:00:00', 1549, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '3', NULL, NULL, NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `Oficio_tipo`
---
-
-CREATE TABLE `Oficio_tipo` (
-  `ID_TipOficio` int NOT NULL,
-  `Nombre` varchar(720) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Parrafo1` varchar(720) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Parrafo2` varchar(720) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Parrafo3` varchar(720) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Parrafo4` varchar(720) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+(82, '2025-08-20 06:00:00', '2025-08-08 06:00:00', 1549, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '3', NULL, NULL, NULL, NULL, NULL),
+(83, '2025-09-24 00:00:00', NULL, 2, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, '3', NULL, NULL, NULL, NULL, NULL),
+(84, '2025-09-24 00:00:00', NULL, 2, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '3', NULL, NULL, NULL, NULL, NULL),
+(85, '2025-09-24 00:00:00', NULL, 2, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '3', NULL, NULL, NULL, NULL, NULL),
+(86, '2025-09-24 00:00:00', NULL, 2, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '3', NULL, NULL, NULL, NULL, NULL),
+(87, '2025-09-25 00:00:00', NULL, 1, 10, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '3', 'sadadsad', 'Nornoreste', 'jkswkd khdh kbnkjhsdbnc kjbndjk jkbwekjd kjbdj kahsdk ijkwbedk kl; lihwedklj dclkblwjdc ;khcl kbhlv;ohklkjbvlkl;sjlkhbp;aj[opqjoinl;nlanvodjnkldcl;dj\';sp; kondkllsfclis ckbnslcdjlosjdcoiljsdcoikn', NULL, NULL),
+(88, '2025-09-25 00:00:00', NULL, 1, 10, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '3', NULL, '22222', 'dsdcscde', '3232', '2025-09-24'),
+(89, '2025-09-03 00:00:00', NULL, 1, 1, 3, 0.00, 0.00, 600.00, 0.00, 18000.00, 121212.00, 233.00, 333222.00, 5.00, 656554565.00, 1, NULL, '3', NULL, NULL, NULL, NULL, NULL),
+(90, '2025-09-25 00:00:00', NULL, 1, 1, 7, 121212.00, 233.00, 333222.00, 5.00, 656554565.00, 121212.00, 233.00, 333341.34, 5.00, 656558145.20, 1, NULL, '3', NULL, '23', NULL, NULL, NULL),
+(91, '2025-09-25 00:00:00', NULL, 6, NULL, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '3', NULL, NULL, NULL, NULL, NULL),
+(92, '2025-09-25 00:00:00', NULL, 6, 10, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '3', NULL, NULL, NULL, NULL, NULL),
+(93, '2025-09-26 00:00:00', NULL, 218, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '3', NULL, NULL, NULL, NULL, NULL),
+(94, '2025-10-09 00:00:00', NULL, 891, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '3', NULL, NULL, NULL, NULL, NULL),
+(95, '2025-10-13 00:00:00', NULL, 4, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '3', NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Volcado de datos para la tabla `Oficio_tipo`
@@ -1201,77 +1052,17 @@ INSERT INTO `Oficio_tipo` (`ID_TipOficio`, `Nombre`, `Parrafo1`, `Parrafo2`, `Pa
 (7, 'OFICIO DE UNION DE PREDIOS', 'En contestación a su solicitud y verificadas las dimensiones de las partes en que se unirán los predios {{Clase}} ubicados en la Sección {{Seccion}}, Manzana {{Manzana}}, marcado con el número {{NumeroOrig}} ({{NumLetraPredioOrig}}) de la calle {{DireccionOrig}} ({{NumLetraDirOrig}}) con el predio marcado con el número {{NumPredioMerg}} ({{NumLetraPredioMerg}}) de la calle {{DirPredioMerg}} ({{NumLetraDirMerg}}), de la Localidad y Municipio de {{Municipio}}, Yucatán, el avalúo catastral es como sigue:', 'En contestación a su solicitud y verificadas las dimensiones de las partes en que se unirán los predios {{Clase}} marcados con los números de tablaje {{NumeroOrig}} ({{NumLetraPredioOrig}}) con el tablaje marcado con el número {{NumPredioMerg}} ({{NumLetraPredioMerg}}), de la Localidad y Municipio de {{Municipio}}, Yucatán, el avalúo catastral es como sigue:', 'Solo surtirá efectos de registro en esta dirección cumpliendo lo dispuesto en el Artículo 130 del Reglamento de la ley que crea el Instituto de Seguridad Jurídica Patrimonial de Yucatán, en los términos establecidos en el artículo 154 de la propia Ley en vigor.', ''),
 (8, 'OFICIO DE URBANIZACION', 'En contestación a su solicitud y verificadas las dimensiones del predio {{Clase}} número {{Numero}} ({{NumLetra}}), de la localidad y Municipio de {{Municipio}}, Yucatán, el cual se urbanizará, formando el predio Urbano Número {{NewNumero}} ({{NumLetraNew}}), de la calle {{Direccion}} ({{NumLetraDir}}) que se ubica en la Sección Catastral {{Seccion}} Manzana {{Manzana}}, de esta misma localidad, con los avalúos catastrales siguientes:', '', 'Solo surtirá efectos de registro en esta dirección cumpliendo lo dispuesto en el Art. 4 transitorio del reglamento de la ley de catastro en vigor.', '');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `Propiedades`
---
-
-CREATE TABLE `Propiedades` (
-  `ID_Propiedad` int NOT NULL,
-  `Nombre` varchar(60) DEFAULT NULL,
-  `Direccion` varchar(60) DEFAULT NULL,
-  `Numero` varchar(13) DEFAULT NULL,
-  `Cruzamientos` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Seccion` varchar(6) DEFAULT NULL,
-  `Manzana` varchar(6) DEFAULT NULL,
-  `Municipio` varchar(85) DEFAULT NULL,
-  `Estado` varchar(85) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Latitud` decimal(11,7) DEFAULT NULL COMMENT 'coordenadas promedio del predio',
-  `Longitud` decimal(11,7) DEFAULT NULL,
-  `Colonia` int DEFAULT NULL,
-  `Propietarios` varchar(450) DEFAULT NULL,
-  `Clase` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '0=urbano, 1=rustico etc',
-  `Uso` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'ejem. solar, vivienda,csa, habitacion, etc',
-  `Tipo` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '3=Tablaje, 2=Fundo Legal, 1=Propiedad',
-  `NumeroTablaje` varchar(11) DEFAULT NULL,
-  `Area` decimal(13,2) DEFAULT NULL,
-  `Perimetro` decimal(13,2) DEFAULT NULL,
-  `ValorCata` decimal(13,2) DEFAULT NULL,
-  `PadreDiv` int DEFAULT NULL,
-  `Especial` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0' COMMENT '1=SI, 0=NO',
-  `ValorTerreno` decimal(12,2) DEFAULT NULL,
-  `Construccion` int DEFAULT NULL COMMENT 'Tipo de material si teiene construccion',
-  `AreaConst` decimal(12,2) DEFAULT NULL,
-  `ValConstr` decimal(12,2) DEFAULT NULL,
-  `ID_Cuadrante` int DEFAULT NULL,
-  `Frente` decimal(15,2) DEFAULT NULL,
-  `Fondo` decimal(15,2) DEFAULT NULL,
-  `Distancia` decimal(15,2) DEFAULT NULL,
-  `CN` varchar(60) DEFAULT NULL,
-  `CS` varchar(60) DEFAULT NULL,
-  `CE` varchar(60) DEFAULT NULL,
-  `CO` varchar(60) DEFAULT NULL,
-  `Estatus` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0' COMMENT '1=Activo, 0 inactivo, 2 en verificacion',
-  `DivisionActiva` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Solo para divisiones 0 = No Activa, 1= Activa',
-  `Fecha` date DEFAULT NULL,
-  `Folio_Electronico` varchar(26) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Planos` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Link de ultimos planos en libro',
-  `Cedula` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Link de Ultima Cedula',
-  `Foto1` varchar(255) DEFAULT NULL COMMENT 'Link de Foto de predio',
-  `Foto2` varchar(255) DEFAULT NULL COMMENT 'Link de Foto de predio',
-  `Foto3` varchar(255) DEFAULT NULL COMMENT 'Link de Foto de predio',
-  `Foto4` varchar(255) DEFAULT NULL COMMENT 'Link de Foto de predio',
-  `Foto5` varchar(125) DEFAULT NULL,
-  `Foto6` varchar(125) DEFAULT NULL,
-  `Observaciones` varchar(950) DEFAULT NULL,
-  `Actualizado` varchar(10) DEFAULT NULL,
-  `Irregular` int NOT NULL DEFAULT '0' COMMENT '0=NO, 1=SI',
-  `Visible` int DEFAULT '1' COMMENT '0=NO, 1=SI',
-  `Importado` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 --
 -- Volcado de datos para la tabla `Propiedades`
 --
 
 INSERT INTO `Propiedades` (`ID_Propiedad`, `Nombre`, `Direccion`, `Numero`, `Cruzamientos`, `Seccion`, `Manzana`, `Municipio`, `Estado`, `Latitud`, `Longitud`, `Colonia`, `Propietarios`, `Clase`, `Uso`, `Tipo`, `NumeroTablaje`, `Area`, `Perimetro`, `ValorCata`, `PadreDiv`, `Especial`, `ValorTerreno`, `Construccion`, `AreaConst`, `ValConstr`, `ID_Cuadrante`, `Frente`, `Fondo`, `Distancia`, `CN`, `CS`, `CE`, `CO`, `Estatus`, `DivisionActiva`, `Fecha`, `Folio_Electronico`, `Planos`, `Cedula`, `Foto1`, `Foto2`, `Foto3`, `Foto4`, `Foto5`, `Foto6`, `Observaciones`, `Actualizado`, `Irregular`, `Visible`, `Importado`) VALUES
-(1, NULL, '16', '205 A', NULL, '01', '022', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'EDILBERTO CHUC ARANA', '0', NULL, '2', '', 600.00, NULL, 18000.00, NULL, '0', 18000.00, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '01-022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
-(2, NULL, '18', '214 B', NULL, '02', '009', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'JORGE ANTONIO CACH KU', '0', NULL, NULL, '', 9489.24, NULL, 474628.56, NULL, '0', 284677.20, 14, 186.96, 189951.36, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
+(1, NULL, '16', '22222', NULL, '01', '022', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'EDILBERTO CHUC ARANA', '0', NULL, '2', '', 333341.34, NULL, 656558145.20, NULL, '0', 21580.20, 33, 5.00, 0.00, 3, 121212.00, 233.00, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '01-022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
+(2, NULL, '18', '214 B', NULL, '02', '009', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'JORGE ANTONIO CACH KU', '0', NULL, NULL, '', 9489.24, NULL, 474628.56, NULL, '0', 284677.20, 14, 186.96, 189951.36, 3, 1111.11, 111.11, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (3, NULL, '18', '215', NULL, '02', '041', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'PERFECTO MORENO', '0', NULL, NULL, '', 4288.00, NULL, 128640.00, NULL, '0', 128640.00, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-041', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
-(4, NULL, '18', '216', NULL, '02', '014', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'CIVIL ASOC CULTURA MAYA ASOC', '0', NULL, NULL, '', 7699.00, NULL, 230970.00, NULL, '0', 230970.00, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-014', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
+(4, NULL, '18', '216', NULL, '02', '014', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'CIVIL ASOC CULTURA MAYA ASOC', '0', NULL, NULL, '', 7699.00, NULL, 230970.00, NULL, '0', 230970.00, 33, 0.00, 0.00, 3, 33.00, 33.00, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-014', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (5, NULL, '20', '220 B', NULL, '02', '009', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'ROMULA BONILLA BAAK', '0', NULL, NULL, '', 1612.00, NULL, 48360.00, NULL, '0', 48360.00, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
-(6, NULL, '', '', NULL, NULL, NULL, 'SANTA ELENA', NULL, 0.0000000, 0.0000000, NULL, 'AGRO ALEF, SOCIEDAD ANONIMA DE CAPITAL VARIABLE', '1', 'Solar', '3', '1373', 122400.00, NULL, 61200.00, NULL, '0', 61200.00, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '2025-02-13', '4516', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'vC manual', '1', 0, 1, 'by <⚡︎> Blitzc0de'),
+(6, NULL, '22', '2223', '12121', '3232', '23233', 'SANTA ELENA', NULL, 0.0000000, 0.0000000, NULL, 'AGRO ALEF, SOCIEDAD ANONIMA DE CAPITAL VARIABLE', '0', 'Solar', '1', '1373', 122400.00, NULL, 61200.00, NULL, '0', 61200.00, 33, 0.00, 0.00, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '2025-02-13', '4516', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'vC manual', '1', 0, 1, 'by <⚡︎> Blitzc0de'),
 (7, NULL, '', '', NULL, '00', '2422', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'CESAR AUGUSTO ARRIGUNAGA COELLO', '1', NULL, NULL, '2422', 5000000.00, NULL, 1640500.00, NULL, '0', 1640500.00, 33, 0.00, 0.00, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '00-000-2422', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (8, NULL, '22', '199', '', '04', '002', '', NULL, 20.3287471, -89.6444947, NULL, 'JACINTO CAAMAL CAAMAL', '0', 'Habitacion', '1', '', 1540.00, NULL, 93256.00, NULL, '', 77000.00, 14, 16.00, 16256.00, 2, 22.00, 70.00, 58.35, NULL, NULL, NULL, NULL, '1', '1', '2025-06-12', '04-002', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '1', 0, 1, 'by <⚡︎> Blitzc0de'),
 (9, NULL, '26', '195', NULL, '04', '003', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'MARIA MIREYA HUCHIN CHI', '0', NULL, NULL, '', 896.00, NULL, 196633.28, NULL, '0', 26880.00, 14, 167.08, 169753.28, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '04-003', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
@@ -1288,7 +1079,7 @@ INSERT INTO `Propiedades` (`ID_Propiedad`, `Nombre`, `Direccion`, `Numero`, `Cru
 (20, NULL, '20', '213 B', NULL, '03', '011', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'REINA MARIA MORENO CAAMAL', '0', NULL, '2', '', 405.65, NULL, 8113.00, NULL, '0', 8113.00, 33, 0.00, 0.00, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '03-011', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (21, NULL, '25', '212', NULL, '03', '022', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'LAIDY MARGARITA KAUIL DZIB', '0', NULL, '2', '', 506.00, NULL, 61600.00, NULL, '0', 50600.00, 33, 0.00, 11000.00, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '03-022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (22, NULL, '18', '201 A', NULL, '02', '010', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'LORENZO TUN CETINA', '0', NULL, NULL, '', 708.00, NULL, 45624.00, NULL, '0', 21240.00, 14, 24.00, 24384.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-010', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
-(23, NULL, '23', '176', NULL, '02', '016', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'CARLOS PEREZ', '0', NULL, '2', '', 119.34, NULL, 3580.20, NULL, '0', 3580.20, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-016', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
+(23, NULL, '23', '176', NULL, '02', '016', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'CARLOS PEREZ', '0', NULL, '2', '', 119.34, NULL, 3580.20, NULL, '0', 3580.20, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-016', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 0, 'by <⚡︎> Blitzc0de'),
 (24, NULL, '17', '208 A', NULL, '04', '012', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'EUGENIO CASTILLO', '0', NULL, '2', '', 335.80, NULL, 10074.00, NULL, '0', 10074.00, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '04-012', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (25, NULL, '', '', NULL, NULL, NULL, 'SANTA ELENA', NULL, NULL, NULL, NULL, 'RICARDO ACOSTA RODRIGUEZ', '1', NULL, NULL, '1281', 2990904.20, NULL, 687010.69, NULL, '0', 687010.69, 33, 0.00, 0.00, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (26, NULL, '13', '217', NULL, '04', '044', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'CARLOS PEREZ', '0', NULL, NULL, '', 3834.00, NULL, 115020.00, NULL, '0', 115020.00, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '04-044', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
@@ -1484,7 +1275,7 @@ INSERT INTO `Propiedades` (`ID_Propiedad`, `Nombre`, `Direccion`, `Numero`, `Cru
 (215, NULL, '', '', '', '', '', '', NULL, -89.6430685, 20.3286104, NULL, 'JAMES STANLEY DAUGHERTY', '1', 'Solar', '3', '479', 524075.26, NULL, 245634.07, NULL, '0', 245634.07, 33, 0.00, 0.00, 3, 0.00, 523.00, 0.00, NULL, NULL, NULL, NULL, '', '1', '2025-06-13', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'el valor de terreno se puso igual que la cedula verificar el calculo ', '1', 0, 1, 'by <⚡︎> Blitzc0de'),
 (216, NULL, '22', '194 A', NULL, '03', '011', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'FERNANDO CHUC ARANA', '0', NULL, '2', '', 442.00, NULL, 13260.00, NULL, '0', 13260.00, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '03-011', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (217, NULL, '24', '177 A', NULL, '04', '699', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'REYMUNDO ROGACIANO PUCH HUCHIM', '0', NULL, '2', '', 336.00, NULL, 156892.00, NULL, '0', 10080.00, 14, 144.50, 146812.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '04-009-699', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
-(218, NULL, '18', '204 A', NULL, '02', '003', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'MARIA ALICIA MORENO KOYOC', '0', NULL, NULL, '', 1519.00, NULL, 148084.40, NULL, '0', 45570.00, 14, 100.90, 102514.40, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-003', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
+(218, NULL, '18', '204 A', '', '02', '003', 'SANTA ELENA', NULL, 20.3288526, -89.6431570, NULL, 'MARIA ALICIA MORENO KOYOC Y MATILDE PUCH PERERA', '0', 'Habitacion', '1', '', 1519.00, NULL, 148084.40, NULL, '', 45570.00, 14, 100.90, 102514.40, 3, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, '1', '1', '2025-09-26', '02-003', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '1', 0, 1, 'by <⚡︎> Blitzc0de'),
 (219, NULL, '10', '201', NULL, '02', '003', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'NORBERTO DIAZ', '0', NULL, NULL, '', 10100.00, NULL, 303000.00, NULL, '0', 303000.00, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-003', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (220, NULL, '17', '189', NULL, '01', '008', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'MARIA SILVIA MORENO DE KEB', '0', NULL, NULL, '', 2006.00, NULL, 60180.00, NULL, '0', 60180.00, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '01-008', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (221, NULL, '10', '200', NULL, '01', '006', 'SANTA ELENA', NULL, 20.3806903, -89.5335426, NULL, 'MATIAS KU', '0', 'Solar', '1', '', 11316.00, NULL, 340654.00, NULL, '0', 339480.00, 13, 1.00, 1174.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '2025-01-12', '01-006', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
@@ -2083,7 +1874,7 @@ INSERT INTO `Propiedades` (`ID_Propiedad`, `Nombre`, `Direccion`, `Numero`, `Cru
 (811, NULL, '19', '201 A', NULL, '04', '011', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'WILLIAM COUOH ARGUELLES', '0', NULL, NULL, '', 1160.00, NULL, 387473.92, NULL, '0', 34800.00, 14, 347.12, 352673.92, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '04-011', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (812, NULL, '20', '194', NULL, '01', '101', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'MARIA GUDELIA CANCHE CAAMAL', '0', NULL, NULL, '', 1680.00, NULL, 74784.00, NULL, '0', 50400.00, 14, 24.00, 24384.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '01-101', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (813, NULL, '20', '198', NULL, '01', '011', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'PEDRO CACH CACH', '0', NULL, '2', '', 196.00, NULL, 56680.00, NULL, '0', 5880.00, 14, 50.00, 50800.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '01-011', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
-(814, NULL, '21', '183', NULL, '01', '005', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'MANUEL BONILLA', '0', NULL, NULL, '', 5120.00, NULL, 153600.00, NULL, '0', 153600.00, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '01-005', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
+(814, NULL, '21', '183', NULL, '01', '005', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'MANUEL BONILLA', '0', NULL, '1', '', 5120.00, NULL, 153600.00, NULL, '0', 153600.00, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '01-005', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (815, NULL, '15', '186', NULL, '01', '023', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'MARCELO UC PINZON', '0', NULL, NULL, '', 1022.00, NULL, 30660.00, NULL, '0', 30660.00, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '01-023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (816, NULL, '21', '209', NULL, '04', '020', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'JINMY POOT PUC', '0', NULL, '2', '', 110.80, NULL, 83008.88, NULL, '0', 3324.00, 14, 78.43, 79684.88, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '04-020', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (817, NULL, '16', '199', NULL, '01', '006', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'LUIS FERNANDO MAGA#A SOTELO', '0', NULL, NULL, '', 2520.00, NULL, 99984.00, NULL, '0', 75600.00, 14, 24.00, 24384.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '01-006', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
@@ -2161,7 +1952,7 @@ INSERT INTO `Propiedades` (`ID_Propiedad`, `Nombre`, `Direccion`, `Numero`, `Cru
 (888, NULL, '29', '199 B', NULL, '02', '013', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'JORGE CHAN BAAS', '0', NULL, NULL, '', 896.00, NULL, 26880.00, NULL, '0', 26880.00, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-013', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (889, NULL, '', '', NULL, NULL, NULL, 'SANTA ELENA', NULL, NULL, NULL, NULL, 'FERNANDO EUGENIO BARBACHANO HERRERO', '1', NULL, NULL, '1297', 953807.90, NULL, 447049.37, NULL, '1', 447049.37, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (890, NULL, '18', '209 A', NULL, '02', '009', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'LEYDA MARGARITA MAY PINZON', '0', NULL, '2', '', 439.80, NULL, 13194.00, NULL, '0', 13194.00, 33, 0.00, 0.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
-(891, NULL, '20', '222', NULL, '02', '012', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'MARIA NORMA IRENE MIAN BONILLA', '0', NULL, NULL, '', 2166.30, NULL, 253548.44, NULL, '0', 64989.00, 14, 185.59, 188559.44, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-012', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
+(891, NULL, '20', '222', NULL, '02', '012', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'MARIA NORMA IRENE MIAN BONILLA', '0', NULL, NULL, '', 2166.30, NULL, 253548.44, NULL, '0', 64989.00, 14, 185.59, 188559.44, 3, 1212.00, 1212.00, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-012', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (892, NULL, '21', '201', NULL, '04', '001', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'JOSE GONZALO MIAN GONGORA', '0', NULL, NULL, '', 861.00, NULL, 181156.08, NULL, '0', 25830.00, 14, 152.88, 155326.08, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '04-001', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (893, NULL, '', '', NULL, '00', '495', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'ERMILO LIZARRAGA', '1', NULL, NULL, '495', 65536.00, NULL, 21502.36, NULL, '0', 21502.36, 33, 0.00, 0.00, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '00-000-495', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
 (894, NULL, '29', '196 C', NULL, '02', '005', 'SANTA ELENA', NULL, NULL, NULL, NULL, 'JAIME REYES COLLI CACH', '0', NULL, NULL, '', 861.10, NULL, 46153.00, NULL, '0', 25833.00, 14, 20.00, 20320.00, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, '02-019-005', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, 'by <⚡︎> Blitzc0de'),
@@ -2815,7 +2606,6 @@ INSERT INTO `Propiedades` (`ID_Propiedad`, `Nombre`, `Direccion`, `Numero`, `Cru
 (1540, '082025', '31', '263', '28 Y 28 DIAG', '03', '016', 'SANTA ELENA', 'Yucatan', 20.3229040, -89.6514620, NULL, 'DAVID GABRIEL CACH KAUIL', '0', 'Solar', '2', '', 597.75, NULL, 17932.50, NULL, '', 17932.50, 33, 0.00, 0.00, 3, 39.85, 15.00, 0.00, NULL, NULL, NULL, NULL, '0', NULL, '2025-08-06', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '1', 0, 1, NULL),
 (1541, '082025', '25', '190-A', '14 y 18 ', '01', '012', 'SANTA ELENA', 'Yucatan', 20.3285878, -89.6431710, NULL, 'ISRAEL GUTIERREZ CHUC Y CARMELA KAUIL HUCHIN', '0', 'Habitacion', '2', '', 560.42, NULL, 16812.60, NULL, '', 16812.60, 33, 0.00, 0.00, 3, 13.00, 48.00, 0.00, NULL, NULL, NULL, NULL, '0', NULL, '2025-08-20', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '1', 1, 1, NULL),
 (1542, '082025', '18', '166', '11', '02', '042', 'SANTA ELENA', 'Yucatan', 20.3340490, -89.6403370, NULL, 'EIDER MATEO KU CHUIL', '0', 'Solar', '2', '', 600.00, NULL, 18000.00, NULL, '', 18000.00, 33, 0.00, 0.00, 3, 25.00, 24.00, 50.00, NULL, NULL, NULL, NULL, '0', NULL, '2025-08-20', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '1', 0, 1, NULL),
-(1543, '082025', '18', '168', '11', '02', '042', 'SANTA ELENA', 'Yucatan', 20.3340490, -89.6403370, NULL, 'YAJAIRA GRIMALDI KU CHUIL', '0', 'Solar', '2', '', 600.00, NULL, 18000.00, NULL, '', 18000.00, 33, 0.00, 0.00, 3, 25.00, 24.00, 24.00, NULL, NULL, NULL, NULL, '0', NULL, '2025-08-20', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '1', 0, 1, NULL),
 (1544, '082025', '18', '170', '11', '02', '042', 'SANTA ELENA', 'Yucatan', 20.3340490, -89.6403370, NULL, 'MARCO ANTONIO KAUIL HUCHIN', '0', 'Solar', '2', '', 594.56, NULL, 17836.80, NULL, '', 17836.80, 33, 0.00, 0.00, 3, 25.00, 21.00, 0.00, NULL, NULL, NULL, NULL, '0', NULL, '2025-09-12', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '1', 1, 1, NULL),
 (1545, '082025', '16', '153', '11', '02', '032', 'SANTA ELENA', 'Yucatan', 20.3339030, -89.6393290, NULL, 'WILBER GUALBERTO BRICEÑO TUN', '0', 'Solar', '2', '', 576.00, NULL, 17280.00, NULL, '', 17333.10, 33, 0.00, 0.00, 3, 36.00, 16.00, 86.00, NULL, NULL, NULL, NULL, '0', NULL, '2025-08-20', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '1', 0, 1, NULL),
 (1546, '082025', '16', '155', '11', '02', '032', 'SANTA ELENA', 'Yucatan', 20.3336520, -89.6394040, NULL, 'EIDER JOSUE KU KAUIL', '0', 'Solar', '2', '', 597.87, NULL, 17936.10, NULL, '', 17936.10, 33, 0.00, 0.00, 3, 36.00, 18.00, 50.00, NULL, NULL, NULL, NULL, '0', NULL, '2025-09-12', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '1', 1, 1, NULL),
@@ -2823,24 +2613,27 @@ INSERT INTO `Propiedades` (`ID_Propiedad`, `Nombre`, `Direccion`, `Numero`, `Cru
 (1548, NULL, '21', '232 A', '28 Y 30', '03', '005', 'SANTA ELENA', 'Yucatan', 20.3284773, -89.6491970, NULL, 'JUANA MARIA UC KOYOC', '0', 'Solar', '1', '', 311.59, NULL, 9347.70, NULL, '', 9347.70, 33, 0.00, 0.00, 3, 13.40, 24.35, 83.70, NULL, NULL, NULL, NULL, '0', NULL, '2025-08-27', '1424204', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '1', 1, 1, NULL),
 (1549, '082025', '31', '216', '30 y 28', '03', '045', 'SANTA ELENA', 'Yucatan', 20.3227540, -89.6515400, NULL, 'JAIME PUCH BONILLA', '0', 'Solar', '2', '', 590.79, NULL, 17723.70, NULL, '', 17723.70, 33, 0.00, 0.00, 3, 19.80, 29.50, 0.00, NULL, NULL, NULL, NULL, '0', NULL, '2025-09-12', '', '/cdn/iGrip/iDept/Catastro/Expedientes/1549//pdf_68c1d2f34b4ce2.67592141.pdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '1', 1, 1, NULL),
 (1550, '082025', '29', '196 A', '31 y 29', '03', '033', '', 'Yucatan', 20.3220210, -89.6436900, NULL, 'MARIA AMALIA CACH BALAM', '0', 'Solar', '2', '', 536.50, NULL, 16095.00, NULL, '', 16095.00, 33, 0.00, 0.00, 3, 12.80, 46.50, 0.00, NULL, NULL, NULL, NULL, '0', NULL, '2025-09-10', '', '/cdn/iGrip/iDept/Catastro/Expedientes/1550//pdf_68c1da8a625c88.87381568.pdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '1', 1, 1, NULL),
-(1551, '082025', '21 Carretera Hopelchén - Umán', '285', '27 DIAG', '05', '004', 'SANTA ELENA', 'Yucatan', 20.3287510, -89.6548140, NULL, 'LUIS ANTONIO HUCHIN PUCH', '0', 'Solar', '2', '', 600.00, NULL, 18000.00, NULL, '', 18000.00, 33, 0.00, 0.00, 3, 10.00, 60.00, 150.00, NULL, NULL, NULL, NULL, '0', NULL, '2025-09-12', '', '/cdn/iGrip/iDept/Catastro/Expedientes/1551//pdf_68c4d0fbd4b556.69037284.pdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '1', 0, 1, NULL);
-
--- --------------------------------------------------------
+(1551, '082025', '21 Carretera Hopelchén - Umán', '285', '27 DIAG', '05', '004', 'SANTA ELENA', 'Yucatan', 20.3287510, -89.6548140, NULL, 'LUIS ANTONIO HUCHIN PUCH', '0', 'Solar', '2', '', 600.00, NULL, 18000.00, NULL, '', 18000.00, 33, 0.00, 0.00, 3, 10.00, 60.00, 150.00, NULL, NULL, NULL, NULL, '0', NULL, '2025-09-12', '', '/cdn/iGrip/iDept/Catastro/Expedientes/1551//pdf_68c4d0fbd4b556.69037284.pdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '1', 0, 1, NULL),
+(1552, NULL, '18', '214 H', '27 Y 29', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'JORGE', '0', NULL, NULL, NULL, 222.00, NULL, 222222.00, 2, '0', NULL, NULL, 2222.00, NULL, NULL, 22.00, 222.00, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, NULL),
+(1553, NULL, '18', '214 Y', '27 Y 29', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SWSWSW', '0', NULL, NULL, NULL, 3333.00, NULL, 33333.00, 2, '0', NULL, NULL, 3333.00, NULL, NULL, 3333.00, 3333.00, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, NULL),
+(1554, NULL, '18', '214 T', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1112121212', '0', NULL, NULL, NULL, 121212.00, NULL, 121212.00, 2, '0', NULL, NULL, 121212.00, NULL, NULL, 121212.00, 121212.00, NULL, NULL, NULL, NULL, NULL, '0', '0', '2025-09-24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, NULL),
+(1555, NULL, '18', '214 O', '26', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SSDSADA', '0', NULL, NULL, NULL, 1313.00, NULL, 1313.00, 2, '0', NULL, NULL, 1313.00, NULL, NULL, 1313.00, 1313.00, NULL, NULL, NULL, NULL, NULL, '0', '0', '2025-09-24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 1, 1, NULL),
+(1556, NULL, '18', '204 D', '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MARIA ALICIA MORENO KOYOC\r\nMATILDE PUCH PERERA', '0', NULL, NULL, NULL, 2323.00, NULL, 2323.00, 218, '0', NULL, NULL, 321.00, NULL, NULL, 232.00, 33.00, NULL, NULL, NULL, NULL, NULL, '0', '0', '2025-09-26', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, NULL),
+(1557, NULL, '18', '204 C', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MARIA ALICIA MORENO KOYOC \nMATILDE PUCH PERERA', '0', NULL, NULL, NULL, 1212.00, NULL, 323223.00, 218, '0', NULL, NULL, 232.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, '0', '0', '2025-09-26', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, NULL),
+(1558, NULL, '27', '222 H', '2122', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MARIA NORMA IRENE MIAN BONILLA', '0', NULL, NULL, NULL, 131313.00, NULL, 131313.00, 891, '0', NULL, NULL, 131313.00, NULL, NULL, 131313.00, 131313.00, NULL, NULL, NULL, NULL, NULL, '0', '0', '2025-10-09', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, NULL),
+(1559, NULL, '12', '12', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '12', '0', NULL, NULL, NULL, 12.00, NULL, 12.00, 4, '0', NULL, NULL, 12.00, NULL, NULL, 12.00, 12.00, NULL, NULL, NULL, NULL, NULL, '0', '0', '2025-10-13', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, NULL),
+(1560, NULL, '13', '13', '13', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '13', '0', NULL, NULL, NULL, 13.00, NULL, 13.00, 4, '0', NULL, NULL, 13.00, NULL, NULL, 13.00, 13.00, NULL, NULL, NULL, NULL, NULL, '0', '0', '2025-10-13', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 1, 1, NULL),
+(1561, NULL, '14', '14', '14', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '14', '0', NULL, NULL, NULL, 14.00, NULL, 14.00, 4, '0', NULL, NULL, 14.00, NULL, NULL, 14.00, 14.00, NULL, NULL, NULL, NULL, NULL, '0', '0', '2025-10-13', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 1, 1, NULL),
+(1562, NULL, '15', '15', '15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '15', '0', NULL, NULL, NULL, 14.00, NULL, 14.00, 4, '0', NULL, NULL, 41.00, NULL, NULL, 14.00, 14.00, NULL, NULL, NULL, NULL, NULL, '0', '0', '2025-10-13', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 0, 1, NULL);
 
 --
--- Estructura de tabla para la tabla `Tarifas`
+-- Volcado de datos para la tabla `Solicitudes`
 --
 
-CREATE TABLE `Tarifas` (
-  `ID_Tarifa` int NOT NULL,
-  `Nombre` varchar(45) DEFAULT NULL,
-  `Descripcion` varchar(450) DEFAULT NULL,
-  `Categoría` int DEFAULT NULL COMMENT '1=Copias, 2=Copias Certificadas, 3= Oficios, 4=Oficios Revalidacion, 5=Planos, 6=VisitasVefic, 7=Topografia, 8=ImpresionSatelital, 9=PlanosManzanerosOseccion, 10= ReferenciaGrograf, 11=ServicosExternos, 12=PlanoMunicipalNG, 13=Nomeclaturas, 14= RevisionPlanos, 15=MejoraPredios',
-  `Calculable` int DEFAULT '0' COMMENT 'Indica si se calcula en base a medidas 0=NO, 1=SI',
-  `RangoInicio` varchar(20) DEFAULT NULL,
-  `RangoFin` varchar(20) DEFAULT NULL,
-  `Precio` decimal(10,4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+INSERT INTO `Solicitudes` (`ID_Solicitud`, `Solicitante`, `Correo`, `Telefono`, `Descripcion`, `Archivos`) VALUES
+(1, 'qweqweq', 'sdsf@icloud.com', '879432674376', 'ewfweikjfhweo wikuefhikuhfiklubvldvhlsvbhljksdfbvkfdv vk jkdavbfkldahv', ''),
+(2, 'wewqeqw', 'jushs@kjdjh.com', '565445', 'sdfjhsdbkj jkhsdkjvcnjlhsdvbkias jbsdjklkhvb labvlkjabvlabnvljknbbakv kanjhdvfbmdv', 'TDP-ISA_copia.pdf'),
+(3, 'jhsdjhds', 'jdjd@iewu.co', '45546546', 'lkjjsdfnnjk kjnjkhd;klfhlknk nb jlhadnoihai;dfv ikbfvk dfljvb', 'aguejo.pdf');
 
 --
 -- Volcado de datos para la tabla `Tarifas`
@@ -2914,21 +2707,6 @@ INSERT INTO `Tarifas` (`ID_Tarifa`, `Nombre`, `Descripcion`, `Categoría`, `Calc
 (71, 'Mejora vC=1001k', 'De un valor de $1,000,001 en adelante ', 15, 1, '1000001', '1000000000', 0.0020),
 (73, 'Asignacion de Nomeclatura', 'Asig. de nomeclatura y alta en Catastro municipal', 3, 0, '', '', 2500.0000);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `TipoConstruccion`
---
-
-CREATE TABLE `TipoConstruccion` (
-  `ID_Construccion` int NOT NULL,
-  `Nombre` varchar(30) DEFAULT NULL,
-  `Calidad` varchar(30) DEFAULT NULL,
-  `Tipo` int DEFAULT NULL COMMENT '0=Habitacion, 1=Industrial',
-  `Descrip` varchar(50) DEFAULT NULL,
-  `Precio` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 --
 -- Volcado de datos para la tabla `TipoConstruccion`
 --
@@ -2968,87 +2746,25 @@ INSERT INTO `TipoConstruccion` (`ID_Construccion`, `Nombre`, `Calidad`, `Tipo`, 
 (32, 'LUJO', 'MALO', 1, 'INDUST', 1462.00),
 (33, 'Sin', 'Construcción', NULL, NULL, 0.00);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `Tramite`
---
-
-CREATE TABLE `Tramite` (
-  `ID_Tramite` int NOT NULL,
-  `Nombre` varchar(60) NOT NULL,
-  `Requisitos` varchar(850) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 --
 -- Volcado de datos para la tabla `Tramite`
 --
 
-INSERT INTO `Tramite` (`ID_Tramite`, `Nombre`, `Requisitos`) VALUES
-(1, '(CEDULA) APLICACION DE VALOR ', '1.-SOLICITUD FIRMADA\n2.-COPIA INE\n3.-CEDULA ORIGINAL\n4.-PLANO ORIGINAL\n5.-FOTOGRAFIA DEL PREDIO\n6.-DOS PLANOS ACTUALIZADOS'),
-(2, '(CEDULA) TRASLACION DE DOMINIO', '1.-ORIGINAL F2\n2.-CEDULA ORIGINAL\n3.-PLANO VIGENTE\n4.-DOS PLANOS CON EL NOMBRE DE PROPIETARIO(ACTUAL)\n5.-FOTOGRAFIA DEL PREDIO'),
-(3, 'DIVISION', '1.-SOLICITUD FIRMADA (PROPIETARIO)\n2.-COPIA INE\n3.-ORIGINAL CEDULA VIGENTE\nPLANO ORIGINAL\n4.-DOS COPIAS DE PROYECTO DE DIVISION CON SUS FRACCIONES\n5.-FOTOS\n6.-VERIFICACION\n'),
-(4, '(CEDULA) MEJORA DE PREDIO', '1.-SOLICITUD FIRMADA (PROPIETARIO)\r\n2.-COPIA INE\r\n3.-ORIGINAL CEDULA VIGENTE\r\n4.-PLANO ORIGINAL\r\n5.-FOTOS\r\n6.-DOS PLANOS CON MEJORA\r\n7.-NO ADEUDO PREDIAL\r\n8.-F2 ORIGINAL'),
-(5, 'CONSTANCIA DE PROPIEDAD', '1.-ORIGINAL CEDULA VIGENTE\r\n2.-PLANO ORIGINAL'),
-(6, 'VERIFICACION', '1.-PREDIO LIMPIO\r\n2.-REFERENCIAS\r\n3.-PAGO PREDIAL\r\n4.-TELEFONO'),
-(7, 'RECTIFICACION', '1.-OFICIO DE RECTIFICACION(FIRMA PROPIETARIO, COLINDANTES, SI ES ESQUINA FIRMA EL PRESIDENTE)\r\n2.-COPIA INE PROPIETARIO Y COLINDANTES\r\n3.-ORIGINAL CEDULA VIGENTE\r\n4.-PLANO ORIGINAL\r\n5.-DOS PLANOS DE PROYECTO DE RECTIFICACION\r\n6.-DOS PLANOS RESULTANTES DE RECTIFICACION\r\n7.-VERIFICACION'),
-(8, 'UNION', '1.-OFICIO DE RECTIFICACION(FIRMA PROPIETARIO, COLINDANTES, SI ES ESQUINA FIRMA EL PRESIDENTE)\n2.-COPIA INE PROPIETARIO Y COLINDANTES\n3.-ORIGINAL CEDULA VIGENTE\n4.-PLANO ORIGINAL\n5.-DOS PLANOS DE PROYECTO DE UNION\n6.-DOS PLANOS RESULTANTES DE UNION\n7.-VERIFICACION'),
-(9, 'URBANIZACION', '1.-SOLICITUD FIRMADA POR EL PROPIETARIO\r\n2.-COPIA INE PROPIETARIO\r\n3.-ORIGINAL CEDULA VIGENTE\r\n4.-PLANO ORIGINAL\r\n5.-DOS PLANOS DE PROYECTO DE URBANIZACION\r\n6.-VERIFICACION'),
-(10, 'CAMBIO DE NOMECLATURA', '1.-SOLICITUD FIRMADA POR EL PROPIETARIO\r\n2.-COPIA INE PROPIETARIO\r\n3.-ORIGINAL CEDULA VIGENTE\r\n4.-PLANO ORIGINAL\r\n5.-DOS PLANOS DE PROYECTO DE CAMBIO DE NOMECLATURA\r\n6.-VERIFICACION'),
-(11, 'ASIGNACION DE NOMECLATURA (FUNDO LEGAL)', '1.-SOLICITUD FIRMADA POR EL PROPIETARIO Y AUTORIDADES\r\n2.-COPIA INE PROPIETARIO\r\n4.-PLANO ORIGINAL\r\n5.-DOS PLANOS DEL PREDIO\r\n6.-CONSTANCIA DE NO PROPIEDAD\r\n7.-VERIFICACION'),
-(12, 'CONSTANCIA DE VALOR CATASTRAL', '1.-SOLICITUD FIRMADA POR EL PROPIETARIO\r\n2.-COPIA INE\r\n3.-ORIGINAL CEDULA VIGENTE\r\n4.-PLANO ORIGINAL\r\n5.-DOS PLANOS DE ACTUALIZADOS'),
-(13, 'PREDIAL', NULL),
-(14, 'OTROS', 'ASEGURE DE CAPTURAR LOS SERVICIOS CORRESPONDIENTES ');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `Verificaciones`
---
-
-CREATE TABLE `Verificaciones` (
-  `ID_Medicion` int NOT NULL,
-  `ID_Propiedad` int DEFAULT NULL,
-  `Fecha_Solicitud` date DEFAULT NULL,
-  `Fecha_Fin` datetime DEFAULT NULL,
-  `Fecha_Pospuesto` date DEFAULT NULL,
-  `Pagado` int DEFAULT '0' COMMENT '0=NO, 1=SI',
-  `Direccion` varchar(90) DEFAULT NULL,
-  `Estatus` int DEFAULT '0' COMMENT '0=PENDIENTE, 1=FINALIZADO, 3=PROCESO',
-  `Fecha_Programada` date DEFAULT NULL,
-  `Latitud` decimal(11,7) DEFAULT NULL,
-  `Longitud` decimal(11,7) DEFAULT NULL,
-  `Comentario` varchar(850) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'comentarios después de verificar',
-  `Observacion` varchar(850) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'comentarios antes de verificar',
-  `Foto_Terreno1` varchar(255) DEFAULT NULL,
-  `Foto_Terreno2` varchar(255) DEFAULT NULL,
-  `Foto_Terreno3` varchar(255) DEFAULT NULL,
-  `Foto_Construc1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Foto_Construc2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Foto_Construc3` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `superTerreno` decimal(15,2) DEFAULT NULL,
-  `Cuadrante` int DEFAULT NULL,
-  `valorTerreno` decimal(15,2) DEFAULT NULL,
-  `tipoConst` int DEFAULT NULL COMMENT 'Tipo de Construcción',
-  `superConst` decimal(14,2) DEFAULT NULL,
-  `valorConst` decimal(15,2) DEFAULT NULL,
-  `vCat` decimal(15,2) DEFAULT NULL,
-  `Frente` decimal(15,2) DEFAULT NULL,
-  `Fondo` decimal(15,2) DEFAULT NULL,
-  `Distancia` decimal(15,2) DEFAULT NULL,
-  `CN` varchar(60) DEFAULT NULL,
-  `CS` varchar(60) DEFAULT NULL,
-  `CE` varchar(60) DEFAULT NULL,
-  `CO` varchar(60) DEFAULT NULL,
-  `ID_Colaborador` int DEFAULT NULL,
-  `Nombre_Solicitante` varchar(120) DEFAULT NULL,
-  `Tel_Solicitante` varchar(13) DEFAULT NULL,
-  `Asigna` int DEFAULT NULL COMMENT 'PERSONAL QUE AGENDA',
-  `Motivo` int DEFAULT NULL COMMENT '1=Rectificacion, 2=Planos',
-  `Destino` int NOT NULL DEFAULT '0' COMMENT '0=Municipal, 1=Particular',
-  `Activo` int NOT NULL DEFAULT '0' COMMENT '0=NO, 1=SI',
-  `ID_Administracion` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+INSERT INTO `Tramite` (`ID_Tramite`, `Nombre`, `Requisitos`, `Descripcion`, `Tiempo`, `Icono`) VALUES
+(1, '(CEDULA) APLICACION DE VALOR ', '1.-SOLICITUD FIRMADA\n2.-COPIA INE\n3.-CEDULA ORIGINAL\n4.-PLANO ORIGINAL\n5.-FOTOGRAFIA DEL PREDIO\n6.-DOS PLANOS ACTUALIZADOS', 'Permite obtener una Cédula de actualizacion de valor de predio', '5 dias habiles', 'bi bi-file-earmark-check'),
+(2, '(CEDULA) TRASLACION DE DOMINIO', '1.-ORIGINAL F2\n2.-CEDULA ORIGINAL\n3.-PLANO VIGENTE\n4.-DOS PLANOS CON EL NOMBRE DE PROPIETARIO(ACTUAL)\n5.-FOTOGRAFIA DEL PREDIO', 'Permite tener el documento oficial emitido por el municipio que certifica el cambio de propietario de un bien inmueble, actualizando los registros catastrales. Este documento es necesario para registrar formalmente la transferencia de propiedad y suele contener datos como el nombre del nuevo dueño, la descripción del predio y su ubicación. ', '2 dias habiles', 'bi bi-file-person'),
+(3, 'DIVISION', '1.-SOLICITUD FIRMADA (PROPIETARIO)\n2.-COPIA INE\n3.-ORIGINAL CEDULA VIGENTE\nPLANO ORIGINAL\n4.-DOS COPIAS DE PROYECTO DE DIVISION CON SUS FRACCIONES\n5.-FOTOS\n6.-VERIFICACION\n', 'Permite obtener el documento oficial que certifica la creación de nuevas propiedades a partir de la subdivisión de un predio original. Este documento, emitido por las autoridades catastrales municipales o estatales, contiene información técnica de cada uno de los nuevos lotes, como sus linderos, superficie, y datos del propietario, después de que la división ha sido autorizada y registrada. ', '5 dias habiles', 'bi bi-file-earmark-break'),
+(4, '(CEDULA) MEJORA DE PREDIO', '1.-SOLICITUD FIRMADA (PROPIETARIO)\r\n2.-COPIA INE\r\n3.-ORIGINAL CEDULA VIGENTE\r\n4.-PLANO ORIGINAL\r\n5.-FOTOS\r\n6.-DOS PLANOS CON MEJORA\r\n7.-NO ADEUDO PREDIAL\r\n8.-F2 ORIGINAL', 'Permite obtener una Cédula Digital por mejora de predio, cuando el propietario del inmueble manifiesta construcción en su predio (superficie construida) ó actualiza los datos de construcción de su predio (incremento o decremento de la superficie manifestada).', '3 dias habiles', 'bi bi-file-medical'),
+(5, 'CONSTANCIA DE PROPIEDAD', '1.-ORIGINAL CEDULA VIGENTE\r\n2.-PLANO ORIGINAL', 'Una constancia de propiedad se usa para acreditar formalmente la posesión de un inmueble, aunque no sustituye al título de propiedad. Su uso principal es facilitar trámites municipales y legales, acceder a servicios básicos como agua y luz, y servir como primer paso para la formalización de la tenencia de la tierra, especialmente en procesos de titulación, préstamos, subsidios o para inscribir un plano individual.', '1 dia habil', 'bi bi-file-pdf'),
+(6, 'VERIFICACION', '1.-PREDIO LIMPIO\r\n2.-REFERENCIAS\r\n3.-PAGO PREDIAL\r\n4.-TELEFONO', 'Proceso técnico que implica la inspección física de un inmueble para recopilar y validar su información física y jurídica. Se utilizan para actualizar bases de datos catastrales, determinar el valor de un predio, corroborar medidas, obtener planos y apoyar procesos de formalización y regularización de propiedades.', '2 dias habiles', 'bi bi-rulers'),
+(7, 'RECTIFICACION', '1.-OFICIO DE RECTIFICACION(FIRMA PROPIETARIO, COLINDANTES, SI ES ESQUINA FIRMA EL PRESIDENTE)\r\n2.-COPIA INE PROPIETARIO Y COLINDANTES\r\n3.-ORIGINAL CEDULA VIGENTE\r\n4.-PLANO ORIGINAL\r\n5.-DOS PLANOS DE PROYECTO DE RECTIFICACION\r\n6.-DOS PLANOS RESULTANTES DE RECTIFICACION\r\n7.-VERIFICACION', 'Tramite que se utiliza para corregir errores en la superficie, linderos o medidas de un bien raíz, de modo que coincidan con la realidad física. Este trámite busca actualizar la información registral o catastral cuando los datos inscritos son incorrectos, ya sea por omisión, error en la medición o cambios físicos del terreno. Su uso es fundamental para regularizar la propiedad y evitar problemas legales futuros.', '5 dias habiles', 'bi bi-file-earmark-diff'),
+(8, 'UNION', '1.-OFICIO DE RECTIFICACION(FIRMA PROPIETARIO, COLINDANTES, SI ES ESQUINA FIRMA EL PRESIDENTE)\n2.-COPIA INE PROPIETARIO Y COLINDANTES\n3.-ORIGINAL CEDULA VIGENTE\n4.-PLANO ORIGINAL\n5.-DOS PLANOS DE PROYECTO DE UNION\n6.-DOS PLANOS RESULTANTES DE UNION\n7.-VERIFICACION', 'Tramite que formaliza legalmente la unión de terrenos con usos compatibles, como unir un predio rústico con otro rústico o uno urbano con otro urbano. Este trámite es necesario para que los predios fusionados se reconozcan legalmente como una sola propiedad, lo que puede facilitar trámites posteriores como la inscripción en el Registro Público de la Propiedad y la obtención de una nueva cédula catastral.', '5 dias habiles', 'bi bi-file-earmark-diff'),
+(9, 'URBANIZACION', '1.-SOLICITUD FIRMADA POR EL PROPIETARIO\r\n2.-COPIA INE PROPIETARIO\r\n3.-ORIGINAL CEDULA VIGENTE\r\n4.-PLANO ORIGINAL\r\n5.-DOS PLANOS DE PROYECTO DE URBANIZACION\r\n6.-VERIFICACION', 'Tramite oficial que autoriza el cambio de un terreno de rústico a urbano, permitiendo la asignación de nomenclatura y la aplicación de servicios de urbanismo. Su uso principal es formalizar y legalizar el proceso de desarrollo de un predio, habilitándolo para la construcción y el uso de suelo correspondiente.', '5 dias habiles', 'bi bi-file-richtext'),
+(10, 'CAMBIO DE NOMECLATURA', '1.-SOLICITUD FIRMADA POR EL PROPIETARIO\r\n2.-COPIA INE PROPIETARIO\r\n3.-ORIGINAL CEDULA VIGENTE\r\n4.-PLANO ORIGINAL\r\n5.-DOS PLANOS DE PROYECTO DE CAMBIO DE NOMECLATURA\r\n6.-VERIFICACION', 'El cambio de nomenclatura es un trámite para modificar la denominación de una entidad, como una institución educativa o un inmueble, o un proceso para estandarizar y unificar la forma en que se nombran elementos en campos como la química y la administración de sistemas informáticos', '2 dias habiles', 'bi bi-copy'),
+(11, 'ASIGNACION DE NOMECLATURA (FUNDO LEGAL)', '1.-SOLICITUD FIRMADA POR EL PROPIETARIO Y AUTORIDADES\r\n2.-COPIA INE PROPIETARIO\r\n4.-PLANO ORIGINAL\r\n5.-DOS PLANOS DEL PREDIO\r\n6.-CONSTANCIA DE NO PROPIEDAD\r\n7.-VERIFICACION', 'La asignación de nomenclatura a un predio de fundo legal es el proceso de otorgarle una designación única e identificable (que incluye número, calle, etc.), gestionada por la autoridad municipal o estatal, para poder inscribirlo legalmente y realizar trámites como la obtención de escrituras. Se utiliza para certificar la existencia y ubicación de un predio destinado al asentamiento humano para que pueda ser formalmente registrado, dando así continuidad a procesos de escrituración y legalización.', '3 dias habiles', 'bi bi-folder-plus'),
+(12, 'CONSTANCIA DE VALOR CATASTRAL', '1.-SOLICITUD FIRMADA POR EL PROPIETARIO\r\n2.-COPIA INE\r\n3.-ORIGINAL CEDULA VIGENTE\r\n4.-PLANO ORIGINAL\r\n5.-DOS PLANOS DE ACTUALIZADOS', 'La constancia de valor catastral se utiliza principalmente para documentar la situación física, jurídica y económica de un inmueble ante diferentes trámites y como base para el cálculo de impuestos. Es un documento oficial que sirve para realizar transacciones inmobiliarias, solicitar créditos hipotecarios, gestionar herencias y trámites fiscales, ya que certifica los datos de un predio, como su superficie, valor y clave única, ante notarios, registradores y autoridades municipales', '1 dia habil', 'bi bi-file-post'),
+(13, 'PREDIAL', 'QUE EL PREDIO SE ENCUENTRE REGISTRADO EN LA BASE DE DATOS  O ULTIMO RECIBO', 'Es un tributo que grava una propiedad o posesión inmobiliaria. Esta contribución la realizan los propietarios de un inmueble, se trate de una vivienda, oficina, edificio o local comercial.\nSe trata de un impuesto local que, por ende, se paga en las oficinas municipales dispuestas por las autoridades para ese fin, pudiendo ser la Tesorería Municipal, la Oficina de Catastro, el portal en línea u otra autorizada.', 'Al instante', 'bi bi-house-up'),
+(14, 'OTROS', 'ASEGURE DE CAPTURAR LOS SERVICIOS CORRESPONDIENTES ', NULL, '3 idas habiles', '');
 
 --
 -- Volcado de datos para la tabla `Verificaciones`
@@ -3060,24 +2776,6 @@ INSERT INTO `Verificaciones` (`ID_Medicion`, `ID_Propiedad`, `Fecha_Solicitud`, 
 (7, 66, '2025-02-21', NULL, NULL, 0, 'C 19 X 18 Y 21', 0, '2025-02-25', 20.3289220, -89.6417890, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MARISA TEC KOYOC', '9971212039', 1, 3, 0, 0, 3),
 (8, 2, '2025-03-06', NULL, NULL, 0, 'C 18', 0, '2025-03-06', 20.3229920, -89.6427520, NULL, 'Division de predios', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Rodrigo Figueroa', '9995953620', 1, 3, 0, 0, 3),
 (9, 110, '2025-03-19', NULL, NULL, 0, 'Carretera Federal', 0, '2025-03-20', 20.2873440, -89.6455380, NULL, 'requiere proyecto de division', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Amalia Hernandez', '7222810393', 1, 2, 1, 0, 3);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `VerificacionesDetalle`
---
-
-CREATE TABLE `VerificacionesDetalle` (
-  `ID_Lectura` int NOT NULL,
-  `ID_Propiedad` int DEFAULT NULL,
-  `ID_Medicion` int DEFAULT NULL,
-  `Latitud` decimal(11,7) DEFAULT NULL,
-  `Longitud` decimal(11,7) DEFAULT NULL,
-  `Punto` varchar(3) DEFAULT NULL,
-  `Fecha_Fin` datetime DEFAULT NULL,
-  `Tipo` int DEFAULT NULL COMMENT 'Tipo por el cual se mide',
-  `Activo` int DEFAULT NULL COMMENT '0=NO, 1=SI'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `VerificacionesDetalle`
@@ -3102,205 +2800,6 @@ INSERT INTO `VerificacionesDetalle` (`ID_Lectura`, `ID_Propiedad`, `ID_Medicion`
 (46, 110, NULL, 20.3135197, -89.6329987, 'D', '2025-03-21 11:08:08', NULL, 1),
 (47, 110, NULL, 20.3136530, -89.6331422, 'E', '2025-03-21 11:08:08', NULL, 1),
 (48, 110, NULL, 20.3140215, -89.6331288, 'F', '2025-03-21 11:08:08', NULL, 1);
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `Cdl_Motiv`
---
-ALTER TABLE `Cdl_Motiv`
-  ADD PRIMARY KEY (`ID_Motivo`);
-
---
--- Indices de la tabla `Cedulas`
---
-ALTER TABLE `Cedulas`
-  ADD PRIMARY KEY (`ID_Cedula`);
-
---
--- Indices de la tabla `Cobros`
---
-ALTER TABLE `Cobros`
-  ADD PRIMARY KEY (`ID_Cobro`);
-
---
--- Indices de la tabla `CobrosDetalle`
---
-ALTER TABLE `CobrosDetalle`
-  ADD PRIMARY KEY (`ID_Detalle`);
-
---
--- Indices de la tabla `Cuadrante`
---
-ALTER TABLE `Cuadrante`
-  ADD PRIMARY KEY (`ID_Cuadrante`);
-
---
--- Indices de la tabla `CuadranteRusticos`
---
-ALTER TABLE `CuadranteRusticos`
-  ADD PRIMARY KEY (`ID_Cuadrante`);
-
---
--- Indices de la tabla `Movimientos`
---
-ALTER TABLE `Movimientos`
-  ADD PRIMARY KEY (`ID_Movimiento`),
-  ADD KEY `ID_Propiedad` (`ID_Propiedad`);
-
---
--- Indices de la tabla `Oficios`
---
-ALTER TABLE `Oficios`
-  ADD PRIMARY KEY (`ID_Oficio`);
-
---
--- Indices de la tabla `Oficio_tipo`
---
-ALTER TABLE `Oficio_tipo`
-  ADD PRIMARY KEY (`ID_TipOficio`);
-
---
--- Indices de la tabla `Propiedades`
---
-ALTER TABLE `Propiedades`
-  ADD PRIMARY KEY (`ID_Propiedad`);
-
---
--- Indices de la tabla `Tarifas`
---
-ALTER TABLE `Tarifas`
-  ADD PRIMARY KEY (`ID_Tarifa`);
-
---
--- Indices de la tabla `TipoConstruccion`
---
-ALTER TABLE `TipoConstruccion`
-  ADD PRIMARY KEY (`ID_Construccion`);
-
---
--- Indices de la tabla `Tramite`
---
-ALTER TABLE `Tramite`
-  ADD PRIMARY KEY (`ID_Tramite`);
-
---
--- Indices de la tabla `Verificaciones`
---
-ALTER TABLE `Verificaciones`
-  ADD PRIMARY KEY (`ID_Medicion`);
-
---
--- Indices de la tabla `VerificacionesDetalle`
---
-ALTER TABLE `VerificacionesDetalle`
-  ADD PRIMARY KEY (`ID_Lectura`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `Cdl_Motiv`
---
-ALTER TABLE `Cdl_Motiv`
-  MODIFY `ID_Motivo` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `Cedulas`
---
-ALTER TABLE `Cedulas`
-  MODIFY `ID_Cedula` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `Cobros`
---
-ALTER TABLE `Cobros`
-  MODIFY `ID_Cobro` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=309;
-
---
--- AUTO_INCREMENT de la tabla `CobrosDetalle`
---
-ALTER TABLE `CobrosDetalle`
-  MODIFY `ID_Detalle` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=357;
-
---
--- AUTO_INCREMENT de la tabla `Cuadrante`
---
-ALTER TABLE `Cuadrante`
-  MODIFY `ID_Cuadrante` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `CuadranteRusticos`
---
-ALTER TABLE `CuadranteRusticos`
-  MODIFY `ID_Cuadrante` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de la tabla `Movimientos`
---
-ALTER TABLE `Movimientos`
-  MODIFY `ID_Movimiento` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=331;
-
---
--- AUTO_INCREMENT de la tabla `Oficios`
---
-ALTER TABLE `Oficios`
-  MODIFY `ID_Oficio` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
-
---
--- AUTO_INCREMENT de la tabla `Oficio_tipo`
---
-ALTER TABLE `Oficio_tipo`
-  MODIFY `ID_TipOficio` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de la tabla `Propiedades`
---
-ALTER TABLE `Propiedades`
-  MODIFY `ID_Propiedad` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1552;
-
---
--- AUTO_INCREMENT de la tabla `Tarifas`
---
-ALTER TABLE `Tarifas`
-  MODIFY `ID_Tarifa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
-
---
--- AUTO_INCREMENT de la tabla `TipoConstruccion`
---
-ALTER TABLE `TipoConstruccion`
-  MODIFY `ID_Construccion` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
---
--- AUTO_INCREMENT de la tabla `Tramite`
---
-ALTER TABLE `Tramite`
-  MODIFY `ID_Tramite` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT de la tabla `Verificaciones`
---
-ALTER TABLE `Verificaciones`
-  MODIFY `ID_Medicion` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT de la tabla `VerificacionesDetalle`
---
-ALTER TABLE `VerificacionesDetalle`
-  MODIFY `ID_Lectura` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `Movimientos`
---
-ALTER TABLE `Movimientos`
-  ADD CONSTRAINT `movimientos_ibfk_1` FOREIGN KEY (`ID_Propiedad`) REFERENCES `Propiedades` (`ID_Propiedad`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

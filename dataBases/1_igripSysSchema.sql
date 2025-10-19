@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
--
--- Servidor: localhost
--- Tiempo de generación: 16-09-2025 a las 10:04:36
--- Versión del servidor: 8.3.0
--- Versión de PHP: 8.3.6
+--
+-- Servidor: mysql
+-- Tiempo de generación: 19-10-2025 a las 18:20:39
+-- Versión del servidor: 9.2.0
+-- Versión de PHP: 8.2.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -16,6 +16,18 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `SE_SYS`
+--
+CREATE DATABASE IF NOT EXISTS `SE_SYS` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `SE_SYS`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `InventarioEquipos`
+--
 
 CREATE TABLE `InventarioEquipos` (
   `ID_Equipo` int NOT NULL,
@@ -38,6 +50,12 @@ CREATE TABLE `InventarioEquipos` (
   `Administracion` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Soporte`
+--
+
 CREATE TABLE `Soporte` (
   `ID_Ticket` int NOT NULL,
   `ID_Dispo` int DEFAULT NULL COMMENT 'ID del equipo',
@@ -57,11 +75,23 @@ CREATE TABLE `Soporte` (
   `ID_Administracion` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `VersionesAppCliente`
+--
+
 CREATE TABLE `VersionesAppCliente` (
   `ID_Version` int NOT NULL,
   `Version` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `descripcion` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `WebBannerADS`
+--
 
 CREATE TABLE `WebBannerADS` (
   `ID_Banner` int NOT NULL,
@@ -72,6 +102,12 @@ CREATE TABLE `WebBannerADS` (
   `Visible` int DEFAULT '1',
   `Fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `WebEventos`
+--
 
 CREATE TABLE `WebEventos` (
   `ID_Evento` int NOT NULL,
@@ -88,6 +124,12 @@ CREATE TABLE `WebEventos` (
   `Tipo` int DEFAULT NULL COMMENT '1=noti,2=event,3=prog'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `WebGacetas`
+--
+
 CREATE TABLE `WebGacetas` (
   `ID_Gaceta` int NOT NULL,
   `Nombre` varchar(65) NOT NULL,
@@ -96,6 +138,12 @@ CREATE TABLE `WebGacetas` (
   `Fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `WebImg`
+--
+
 CREATE TABLE `WebImg` (
   `ID_Img` int NOT NULL,
   `Logo` varchar(250) NOT NULL,
@@ -103,6 +151,12 @@ CREATE TABLE `WebImg` (
   `Titulo` varchar(500) DEFAULT NULL,
   `Visible` int DEFAULT '1' COMMENT '0=no, 1=si'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `WebIndex`
+--
 
 CREATE TABLE `WebIndex` (
   `ID_Index` int NOT NULL,
@@ -119,6 +173,12 @@ CREATE TABLE `WebIndex` (
   `Call_Link` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `WebNoticias`
+--
+
 CREATE TABLE `WebNoticias` (
   `ID_Noticia` int NOT NULL,
   `Logo1` varchar(250) DEFAULT NULL,
@@ -128,6 +188,12 @@ CREATE TABLE `WebNoticias` (
   `Descrip2` varchar(1800) DEFAULT NULL,
   `Fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `WebProgramSocial`
+--
 
 CREATE TABLE `WebProgramSocial` (
   `ID_Program` int NOT NULL,
@@ -142,6 +208,9 @@ CREATE TABLE `WebProgramSocial` (
   `Bases` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Índices para tablas volcadas
+--
 
 --
 -- Indices de la tabla `InventarioEquipos`
@@ -211,7 +280,7 @@ ALTER TABLE `WebProgramSocial`
 -- AUTO_INCREMENT de la tabla `InventarioEquipos`
 --
 ALTER TABLE `InventarioEquipos`
-  MODIFY `ID_Equipo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_Equipo` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `Soporte`
@@ -223,7 +292,7 @@ ALTER TABLE `Soporte`
 -- AUTO_INCREMENT de la tabla `VersionesAppCliente`
 --
 ALTER TABLE `VersionesAppCliente`
-  MODIFY `ID_Version` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_Version` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `WebBannerADS`
@@ -253,7 +322,7 @@ ALTER TABLE `WebImg`
 -- AUTO_INCREMENT de la tabla `WebIndex`
 --
 ALTER TABLE `WebIndex`
-  MODIFY `ID_Index` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Index` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `WebNoticias`
@@ -265,7 +334,7 @@ ALTER TABLE `WebNoticias`
 -- AUTO_INCREMENT de la tabla `WebProgramSocial`
 --
 ALTER TABLE `WebProgramSocial`
-  MODIFY `ID_Program` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Program` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
