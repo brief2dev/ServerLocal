@@ -25,6 +25,10 @@ SET time_zone = "+00:00";
 -- Volcado de datos para la tabla `Anomalias`
 --
 
+CREATE DATABASE IF NOT EXISTS SE_Agua;
+USE SE_Agua;
+
+
 INSERT INTO `Anomalias` (`ID_Anomalia`, `Nombre`, `Importacion`) VALUES
 (1, 'VIDRIO OPACO', '  by  Blitzc0de'),
 (2, 'DESCOMPUESTO (ENTERO)', '  by  Blitzc0de'),
