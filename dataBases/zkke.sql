@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.2
+-- version 5.2.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: mysql
--- Tiempo de generación: 11-11-2025 a las 00:52:54
--- Versión del servidor: 9.2.0
--- Versión de PHP: 8.2.27
+-- Servidor: localhost
+-- Tiempo de generación: 16-11-2025 a las 16:10:44
+-- Versión del servidor: 8.4.7
+-- Versión de PHP: 8.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `zkke`
 --
-CREATE DATABASE IF NOT EXISTS `iZeek_PS` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE `iZeek_PS`;
+
 -- --------------------------------------------------------
 
 --
@@ -92,9 +91,14 @@ CREATE TABLE `Caja_T` (
   `Motivo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Volcado de datos para la tabla `Caja_T`
+--
+
 INSERT INTO `Caja_T` (`ID_Caja_T`, `Motivo`) VALUES
-(1, 'Ingresos'),
+(1, 'Ingreso'),
 (2, 'Retiro');
+
 -- --------------------------------------------------------
 
 --
@@ -109,6 +113,13 @@ CREATE TABLE `Categorias` (
   `ID_Sucursal` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Volcado de datos para la tabla `Categorias`
+--
+
+INSERT INTO `Categorias` (`ID_Categoria`, `Nombre`, `Descripcion`, `Importado`, `ID_Sucursal`) VALUES
+(1, 'Pantalones', 'Ropa para uso de damas y caballeros', NULL, 1),
+(2, 'Calzado', 'Calzado en general', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -132,6 +143,13 @@ CREATE TABLE `Clientes` (
   `Premium` int DEFAULT NULL COMMENT '0=NO,1=SI',
   `ID_Sucursal` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Volcado de datos para la tabla `Clientes`
+--
+
+INSERT INTO `Clientes` (`ID_Cliente`, `Nombres`, `Apellidos`, `Correo`, `Telefono`, `Direccion`, `CP`, `Fecha_Registro`, `visible`, `SLD`, `Credito`, `Tope_Credito`, `Premium`, `ID_Sucursal`) VALUES
+(1, 'Publico', 'General', NULL, NULL, NULL, NULL, '2025-10-06', 1, 0, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -338,6 +356,13 @@ CREATE TABLE `Personal` (
   `visible` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Volcado de datos para la tabla `Personal`
+--
+
+INSERT INTO `Personal` (`ID_Personal`, `Nombre`, `Apellido`, `Usuario`, `Bio`, `Comentarios`, `Colonia`, `CP`, `Correo`, `Pass`, `Contrasena`, `Telefono`, `Foto`, `ID_Sucursal`, `ID_Puesto`, `rol`, `Fecha_Registro`, `Baja`, `visible`) VALUES
+(1, 'Mariel', 'Santos', 'mariel.santos', NULL, NULL, 'Vivah 1', 97860, 'app-support@blitzc0de.com', '12', '$2y$10$1JyPp/24tKH9JumWLvlAauFpERQbO9ofjZ3x17zZsDBMUV6qxu352', '5586673337', NULL, 1, 1, NULL, '2025-11-03 15:40:49', 0, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -384,6 +409,13 @@ CREATE TABLE `Productos` (
   `Calzado` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '0' COMMENT 'indica si es calzado o otros productos 1 = SI, 0 = NO'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Volcado de datos para la tabla `Productos`
+--
+
+INSERT INTO `Productos` (`ID_Producto`, `Codigo`, `Nombre`, `Descripcion`, `N_Calzado`, `Marca`, `Foto1`, `Foto2`, `Foto3`, `Foto4`, `Foto5`, `item1`, `item2`, `item3`, `item4`, `item5`, `item6`, `item7`, `item8`, `item9`, `item10`, `PrecioVenta`, `PrecioCompra`, `Precio_Tachado`, `Existencia`, `ID_Sucursal`, `ID_Categoria`, `ID_SubCat`, `Fecha_Ingreso`, `ID_Proveedor`, `Importado`, `visto`, `Destacado`, `Online`, `can`, `cant`, `Calzado`) VALUES
+(1, 'A01', 'Monster', 'Producto para uso de desarrollo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 13.00, 4.00, 15.00, 2890, 1, 2, 1, '2025-11-03 15:39:01', NULL, NULL, 1, '1', 1, 0, NULL, '0');
+
 -- --------------------------------------------------------
 
 --
@@ -396,6 +428,13 @@ CREATE TABLE `Productos_Sucursales` (
   `ID_Sucursal` int UNSIGNED NOT NULL,
   `Cantidad` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `Productos_Sucursales`
+--
+
+INSERT INTO `Productos_Sucursales` (`ID`, `ID_Producto`, `ID_Sucursal`, `Cantidad`) VALUES
+(1, 1, 1, 2890);
 
 -- --------------------------------------------------------
 
@@ -437,6 +476,18 @@ CREATE TABLE `Puestos` (
   `Cargo` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Volcado de datos para la tabla `Puestos`
+--
+
+INSERT INTO `Puestos` (`ID_Puesto`, `Cargo`) VALUES
+(1, 'Sistemas'),
+(2, 'Administrador'),
+(3, 'Encargado'),
+(4, 'Vendedor'),
+(5, 'Cliente'),
+(6, 'Proveedor');
+
 -- --------------------------------------------------------
 
 --
@@ -449,6 +500,15 @@ CREATE TABLE `subcat` (
   `Descripcion` varchar(50) DEFAULT NULL,
   `ID_Sucursal` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `subcat`
+--
+
+INSERT INTO `subcat` (`idSubCategoria`, `subcategoria`, `Descripcion`, `ID_Sucursal`) VALUES
+(1, 'Dama', 'Para uso exclusivo de damas', 1),
+(2, 'Caballeros', 'Para uso exclusivo de caballeros', 1),
+(3, 'Deportes', 'Accesorios para deportes', NULL);
 
 -- --------------------------------------------------------
 
@@ -483,6 +543,13 @@ CREATE TABLE `Sucursales` (
   `Utilidad` double DEFAULT NULL COMMENT 'porcentaje de utilidad',
   `visible` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Volcado de datos para la tabla `Sucursales`
+--
+
+INSERT INTO `Sucursales` (`ID_Sucursal`, `Nombre`, `RFC`, `Municipio`, `Estado`, `Direccion`, `Correo`, `Colonia`, `Cp`, `Latitud`, `Longitud`, `Telefono`, `Logo`, `Tipo`, `Gerente`, `Whats`, `instagram`, `facebook`, `Color`, `ColorDark`, `Clabe`, `Banco`, `Beneficiario`, `Utilidad`, `visible`) VALUES
+(1, 'Pacas Mary', NULL, 'Ticul', 'Yucatan', 'C29 x 18 y 16', NULL, 'San Juan', 97860, NULL, NULL, NULL, 'assets\\images\\companies\\logo.jpg', NULL, NULL, NULL, NULL, NULL, '#D9D9D9', '#9C9C9C', NULL, NULL, NULL, 35, 1);
 
 -- --------------------------------------------------------
 
@@ -539,6 +606,10 @@ CREATE TABLE `Venta_T` (
   `Destino` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Volcado de datos para la tabla `Venta_T`
+--
+
 INSERT INTO `Venta_T` (`ID_Destino`, `Destino`) VALUES
 (1, 'Venta'),
 (2, 'Credito'),
@@ -589,6 +660,13 @@ CREATE TABLE `ZMisc` (
   `Fecha` date DEFAULT NULL,
   `Corte` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Volcado de datos para la tabla `ZMisc`
+--
+
+INSERT INTO `ZMisc` (`ID_Misc`, `ID_Sucursal`, `ID_Personal`, `Fecha`, `Corte`) VALUES
+(1, 1, 1, '2025-11-16', 0);
 
 --
 -- Índices para tablas volcadas
@@ -813,19 +891,19 @@ ALTER TABLE `Caja`
 -- AUTO_INCREMENT de la tabla `Caja_T`
 --
 ALTER TABLE `Caja_T`
-  MODIFY `ID_Caja_T` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Caja_T` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `Categorias`
 --
 ALTER TABLE `Categorias`
-  MODIFY `ID_Categoria` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Categoria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `Clientes`
 --
 ALTER TABLE `Clientes`
-  MODIFY `ID_Cliente` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Cliente` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `codigos`
@@ -891,19 +969,19 @@ ALTER TABLE `Pedidos_Abonos`
 -- AUTO_INCREMENT de la tabla `Personal`
 --
 ALTER TABLE `Personal`
-  MODIFY `ID_Personal` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Personal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `Productos`
 --
 ALTER TABLE `Productos`
-  MODIFY `ID_Producto` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Producto` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `Productos_Sucursales`
 --
 ALTER TABLE `Productos_Sucursales`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `Proveedores`
@@ -915,19 +993,19 @@ ALTER TABLE `Proveedores`
 -- AUTO_INCREMENT de la tabla `Puestos`
 --
 ALTER TABLE `Puestos`
-  MODIFY `ID_Puesto` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Puesto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `subcat`
 --
 ALTER TABLE `subcat`
-  MODIFY `idSubCategoria` int NOT NULL AUTO_INCREMENT;
+  MODIFY `idSubCategoria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `Sucursales`
 --
 ALTER TABLE `Sucursales`
-  MODIFY `ID_Sucursal` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Sucursal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `Ventas`
@@ -945,7 +1023,7 @@ ALTER TABLE `Venta_Detalle`
 -- AUTO_INCREMENT de la tabla `Venta_T`
 --
 ALTER TABLE `Venta_T`
-  MODIFY `ID_Destino` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Destino` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `vFinanciados`
@@ -963,7 +1041,7 @@ ALTER TABLE `ZConfig`
 -- AUTO_INCREMENT de la tabla `ZMisc`
 --
 ALTER TABLE `ZMisc`
-  MODIFY `ID_Misc` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Misc` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
