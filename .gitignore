@@ -2,3 +2,5 @@
 Apps
 Host/*      # Ignora todo dentro de Host
 !Host/      # Pero no ignores la carpeta en sí =>
+FlutterSDK/
+FlutterSDK
