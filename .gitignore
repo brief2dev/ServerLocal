@@ -1,7 +1,6 @@
 .DS_Store
 Apps
-Host/*                          
-#!Host/                          # Pero no ignores la carpeta en sí
-!Host/exports_all.php           
+Host/*
+!Host/exports_all.php
 FlutterSDK/
 FlutterSDK
