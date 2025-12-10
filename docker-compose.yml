@@ -3,7 +3,6 @@ version: "3.9"
 services:
 
   php-apache:
-    image: php:8.4-apache
     container_name: apchDev
     build: .
     ports:

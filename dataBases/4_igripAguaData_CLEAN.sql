@@ -1,33 +1,6 @@
--- phpMyAdmin SQL Dump
--- version 5.2.2
--- https://www.phpmyadmin.net/
---
--- Servidor: mysql
--- Tiempo de generación: 19-10-2025 a las 17:06:09
--- Versión del servidor: 9.2.0
--- Versión de PHP: 8.2.27
+SET FOREIGN_KEY_CHECKS = 0;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `SE_Agua`
---
-
---
--- Volcado de datos para la tabla `Anomalias`
---
-
-CREATE DATABASE IF NOT EXISTS SE_Agua;
-USE SE_Agua;
-
+USE `SE_Agua`;
 
 INSERT INTO `Anomalias` (`ID_Anomalia`, `Nombre`, `Importacion`) VALUES
 (1, 'VIDRIO OPACO', '  by  Blitzc0de'),
@@ -42,29 +15,14 @@ INSERT INTO `Anomalias` (`ID_Anomalia`, `Nombre`, `Importacion`) VALUES
 (10, 'BAJO CONSUMO', '  by  Blitzc0de'),
 (11, 'LECTURA MENOR', '  by  Blitzc0de'),
 (12, 'SIN LECTURA', '  by  Blitzc0de'),
-(13, 'SIN USO AGUA', '  by  Blitzc0de');
-
---
--- Volcado de datos para la tabla `Caja`
---
-
+(13, 'SIN USO AGUA', '  by  Blitzc0de');;
 INSERT INTO `Caja` (`ID_ACaja`, `ID_Personal`, `Monto`, `Tipo`, `Descripcion`, `Fecha`, `Medio`, `Corte`, `ID_Corte`) VALUES
 (1, 29, 80, 1, 'Cambio de nombre 58621', '2022-08-29 09:37:13', 1, 0, NULL),
-(2, 29, 10, 2, 'papel', '2022-08-29 09:50:26', 1, 0, NULL);
-
---
--- Volcado de datos para la tabla `Cargos`
---
-
+(2, 29, 10, 2, 'papel', '2022-08-29 09:50:26', 1, 0, NULL);;
 INSERT INTO `Cargos` (`ID_Cargo`, `Nombre`, `Precio`) VALUES
 (1, 'Reconexion', 120),
 (2, 'Contratacion', 1820),
-(3, 'Rectificacion', 52);
-
---
--- Volcado de datos para la tabla `Lecturas`
---
-
+(3, 'Rectificacion', 52);;
 INSERT INTO `Lecturas` (`ID_Lectura`, `ID_Usuario`, `Lectura`, `Fecha_Lectura`, `ID_Colaborador`) VALUES
 (1, 58621, '10', '2021-09-15', 1),
 (2, 58621, '25', '2021-09-26', 1),
@@ -82,12 +40,7 @@ INSERT INTO `Lecturas` (`ID_Lectura`, `ID_Usuario`, `Lectura`, `Fecha_Lectura`, 
 (14, 58621, '125', '2021-10-03', 1),
 (15, 58621, '145', '2022-08-29', 29),
 (16, 58621, '150', '2022-08-29', 29),
-(17, 58621, '155', '2022-08-29', 29);
-
---
--- Volcado de datos para la tabla `Pagos`
---
-
+(17, 58621, '155', '2022-08-29', 29);;
 INSERT INTO `Pagos` (`ID_Cobro`, `ID_Personal`, `Fecha_Cobro`, `Referencia`, `Subtotal`, `Descuento_Porc`, `Descuento_Pesos`, `Total`, `Comentario`, `Medio_Pago`, `Efectivo`, `Cambio`, `Corte`, `ID_Corte`, `Usuario`, `Tipo_Pago`, `Origen`, `Verificado`) VALUES
 (1, 1, '2021-10-02', '58621002021100600102', 82, 5, 4.1, 77.9, 'prueba 1', 1, 100, 22.1, 0, NULL, '58621', 'Pago', NULL, NULL),
 (2, 1, '2021-10-03', '5862100202110060020', 61, 0, 0, 61, '', 1, 100, 39, 0, NULL, '58621', 'Abono', NULL, NULL),
@@ -125,12 +78,7 @@ INSERT INTO `Pagos` (`ID_Cobro`, `ID_Personal`, `Fecha_Cobro`, `Referencia`, `Su
 (34, 29, '2022-08-24', NULL, 240, 10, 24, 216, '', 1, 250, 34, 0, NULL, '58621', 'Pago', 3, 1),
 (35, 7, '2025-07-26', NULL, 0, 0, 0, 240, '1/2025', 1, 250, 10, 0, NULL, '0', '2', 3, NULL),
 (36, 7, '2025-07-26', NULL, 0, 0, 0, 240, '2/2025', 1, 250, 10, 0, NULL, '0', '2', 3, NULL),
-(37, 7, '2025-07-26', NULL, 0, 0, 0, 240, '3/2025', 1, 250, 10, 0, NULL, '40000', '2', 3, NULL);
-
---
--- Volcado de datos para la tabla `Recibos`
---
-
+(37, 7, '2025-07-26', NULL, 0, 0, 0, 240, '3/2025', 1, 250, 10, 0, NULL, '40000', '2', 3, NULL);;
 INSERT INTO `Recibos` (`ID_Recibo`, `Num_Servicio`, `Fecha_Limite`, `DeudaActual`, `Referencia`, `Adeudo_Ant`, `Tarifa`, `Lectura_Ant`, `Lectura_Actual`, `Logo_Agua`, `Logo_Banner`, `Logo_Sat`, `Pagado`, `Vencido`, `Impreso`) VALUES
 (1, 58621, '2021-10-03', 6832.75, '586212021-10-036832.75', 61, 20, 0, NULL, '', '', '', NULL, NULL, NULL),
 (2, 58621, '2021-10-03', 6832.75, '5862120211003686275', 61, 20, 0, NULL, '', '', '', NULL, NULL, NULL),
@@ -140,29 +88,14 @@ INSERT INTO `Recibos` (`ID_Recibo`, `Num_Servicio`, `Fecha_Limite`, `DeudaActual
 (6, 58621, '2021-10-10', 65, '5862100202110100065', 45, 20, 70, 90, '', '', '', NULL, NULL, NULL),
 (7, 58621, '2021-10-10', 85, '5862100202110100085', 65, 20, 90, 110, '', '', '', NULL, NULL, NULL),
 (8, 58621, '2021-10-10', 70, '5862100202110100070', 50, 20, 110, 115, '', '', '', NULL, NULL, NULL),
-(10, 58621, '2021-10-10', 20, '5862100202110100020', 0, 20, 120, 125, '', '', '', 1, NULL, NULL);
-
---
--- Volcado de datos para la tabla `SolicitudesContrato`
---
-
+(10, 58621, '2021-10-10', 20, '5862100202110100020', 0, 20, 120, 125, '', '', '', 1, NULL, NULL);;
 INSERT INTO `SolicitudesContrato` (`ID_Solicitud`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `Telefono`, `ID_Ciudadano`, `ID_Colonia`, `Latitud`, `Longitud`, `ID_Personal`, `ID_Fontanero`, `FechaSolicitud`, `FechaInspeccion`, `Pagado`, `Estado`, `Referencias`, `Comentarios`, `Observaciones`) VALUES
 (1, 'Mariel Eleazar', 'Santos', 'Paredes', 'C43 x 24A 26 203-Q', '5660436605', 1, 2, 20.381425, -89.533305, NULL, NULL, '2025-07-27', NULL, 0, 1, NULL, 'xxxxxx', NULL),
-(2, 'Mariel Eleazar', 'Santos', 'Paredes', 'C43 x 24A 26 203-Q', '5660436605', 1, 1, 20.381908, -89.533519, 7, NULL, '2025-07-27', NULL, 0, 1, 'qqqqqqq', 'kkkkk', NULL);
-
---
--- Volcado de datos para la tabla `Tarifa`
---
-
+(2, 'Mariel Eleazar', 'Santos', 'Paredes', 'C43 x 24A 26 203-Q', '5660436605', 1, 1, 20.381908, -89.533519, 7, NULL, '2025-07-27', NULL, 0, 1, 'qqqqqqq', 'kkkkk', NULL);;
 INSERT INTO `Tarifa` (`ID_Tarifa`, `Nombre`, `Costo`) VALUES
 (1, 'Domestico', 20),
 (2, 'Comercial', 40),
-(3, 'Industrial', 60);
-
---
--- Volcado de datos para la tabla `Usuarios`
---
-
+(3, 'Industrial', 60);;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (40000, 'Aug', NULL, NULL, 'c 37 x 24 y 26', NULL, NULL, NULL, NULL, 1, NULL, '98712787817', 1, '2021-03-17', NULL, NULL, 1, -240, 2, 4, 'Testing Acount', 0, NULL, NULL, NULL, '1'),
 (50001, ' OSCAR GONZALEZ TORRES ', NULL, NULL, ' 25 # 172 X 16 Y 18 ', NULL, ' 1 ', ' 14 ', ' 3270 ', NULL, NULL, ' 109004 ', 1, '1966-08-21', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -396,7 +329,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (50247, ' JOSE CESAR PEREZ TUN ', NULL, NULL, ' 19 # 206-D X 28 Y 30 ', NULL, ' 1 ', ' 11 ', ' 1300 ', NULL, NULL, ' 0 ', 1, '1966-08-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (50248, ' BERTHA BRICEÑO ', NULL, NULL, ' 19 # 197E X 24 Y 26 ', NULL, ' 1 ', ' 11 ', ' 1020 ', NULL, NULL, ' 383555 ', 1, '1966-08-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (50249, ' MANUEL MAY HAU ', NULL, NULL, ' 29 # 214 X 28 Y 30 ', NULL, ' 1 ', ' 21 ', ' 1430 ', NULL, NULL, ' 0 ', 1, '1966-08-18', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(50250, ' FLORENCIO GONZALEZ ', NULL, NULL, ' 29 # 214A X 24 Y 26 ', NULL, ' 1 ', ' 21 ', ' 1117 ', NULL, NULL, ' 0 ', 1, '1966-08-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(50250, ' FLORENCIO GONZALEZ ', NULL, NULL, ' 29 # 214A X 24 Y 26 ', NULL, ' 1 ', ' 21 ', ' 1117 ', NULL, NULL, ' 0 ', 1, '1966-08-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (50251, ' MANUEL ANGEL CHAN TUN ', NULL, NULL, ' 32 # 213 X 27 Y 29 ', NULL, ' 1 ', ' 7 ', ' 1900 ', NULL, NULL, ' 0 ', 2, '1966-09-09', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (50252, ' RIGOBERTO CARDEÑA ', NULL, NULL, ' 30 # 222 X 31 Y 33 ', NULL, ' 1 ', ' 6 ', ' 410 ', NULL, NULL, ' 0 ', 1, '1966-09-08', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -629,7 +562,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (50516, ' ROSA OBDULIA BE LOEZA ', NULL, NULL, ' 19 # 203-C X 26 Y 28 ', NULL, ' 1 ', ' 11 ', ' 1210 ', NULL, NULL, ' 0 ', 1, '1966-11-15', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (50519, ' CARLOS R. NAVARRETE ', NULL, NULL, ' 19 # 209 X 26 Y 28 ', NULL, ' 1 ', ' 11 ', ' 1250 ', NULL, NULL, ' 0 ', 1, '1966-11-06', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (50520, ' ANA ROSA GARCIA LOPEZ ', NULL, NULL, ' 19 # 211 X 28 Y 30 ', NULL, ' 1 ', ' 11 ', ' 1265 ', NULL, NULL, ' 999064 ', 2, '1966-11-08', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(50521, ' MARIO H BURGOS S ', NULL, NULL, ' 19 # 206  X 28 Y 30 ', NULL, ' 1 ', ' 11 ', ' 1253 ', NULL, NULL, ' 684514 ', 2, '1966-10-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(50521, ' MARIO H BURGOS S ', NULL, NULL, ' 19 # 206  X 28 Y 30 ', NULL, ' 1 ', ' 11 ', ' 1253 ', NULL, NULL, ' 684514 ', 2, '1966-10-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (50523, ' GUADALUPE PERALTA ', NULL, NULL, ' 19 # 208 X 28 Y 30 ', NULL, ' 1 ', ' 11 ', ' 1360 ', NULL, NULL, ' 0 ', 1, '1982-07-13', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (50524, ' ERMILO PINO V ', NULL, NULL, ' 19 # 213B X 28 Y 30 ', NULL, ' 1 ', ' 11 ', ' 1350 ', NULL, NULL, ' 0 ', 1, '1966-10-14', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -862,7 +795,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (50824, ' SANTIAGO CETZ ', NULL, NULL, ' 18 # 218A X 27 Y 29 ', NULL, ' 1 ', ' 1 ', ' 2510 ', NULL, NULL, ' 450783 ', 1, '1967-01-08', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (50826, ' WILBERTH GONZALO MARTIN ', NULL, NULL, ' 18 # 211-C X 29 Y 31 ', NULL, ' 1 ', ' 1 ', ' 2760 ', NULL, NULL, ' 90209499 ', 1, '1979-05-17', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (50827, ' RIGOBERTO PERAZA ', NULL, NULL, ' 33 # 196 X 24 Y 26 ', NULL, ' 1 ', ' 16 ', ' 2500 ', NULL, NULL, ' 0 ', 1, '1966-12-12', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(50828, ' ADALBERTO IX ', NULL, NULL, ' 33 # 199 X 24 Y 26 ', NULL, ' 1 ', ' 16 ', ' 2530 ', NULL, NULL, ' 279994 ', 1, '1966-10-15', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(50828, ' ADALBERTO IX ', NULL, NULL, ' 33 # 199 X 24 Y 26 ', NULL, ' 1 ', ' 16 ', ' 2530 ', NULL, NULL, ' 279994 ', 1, '1966-10-15', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (50829, ' VICTOR DURAN ', NULL, NULL, ' 33 # 197A X 24 Y 26 ', NULL, ' 1 ', ' 16 ', ' 2490 ', NULL, NULL, ' 1598150 ', 1, '1966-10-17', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (50830, ' VIRGINIA CARRILLO MEX ', NULL, NULL, ' 33 # 197 X 24 Y 26 ', NULL, ' 1 ', ' 16 ', ' 2480 ', NULL, NULL, ' 1598148 ', 1, '1966-11-28', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -1096,7 +1029,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (51134, ' NICANOR GUTIERREZ ', NULL, NULL, ' 23 # 232B X 32 Y 34 ', NULL, ' 1 ', ' 13 ', ' 2120 ', NULL, NULL, ' 545673 ', 2, '1971-08-15', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (51135, ' ALFONSO ALEJOS ', NULL, NULL, ' 23 # 229-B X 32 Y 34 ', NULL, ' 1 ', ' 13 ', ' 680 ', NULL, NULL, ' 0 ', 1, '1966-11-20', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (51136, ' JUAN B. MAGAÑA SANTAMARIA ', NULL, NULL, ' 23 # 229A X 32 Y 34 ', NULL, ' 1 ', ' 13 ', ' 650 ', NULL, NULL, ' 0 ', 1, '1966-10-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(51138, ' FELIPE CHAN ', NULL, NULL, ' 23 # 270 X 40 Y 42 ', NULL, ' 1 ', ' 13 ', ' 1740 ', NULL, NULL, ' 550859 ', 1, '1966-11-08', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(51138, ' FELIPE CHAN ', NULL, NULL, ' 23 # 270 X 40 Y 42 ', NULL, ' 1 ', ' 13 ', ' 1740 ', NULL, NULL, ' 550859 ', 1, '1966-11-08', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (51140, ' FELIPE DE JESUS HERNANDEZ ', NULL, NULL, ' 23 # 213-B X 28 Y 30 ', NULL, ' 1 ', ' 13 ', ' 380 ', NULL, NULL, ' 0 ', 2, '1966-10-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (51141, ' JOSE ANTONIO NOVELO ORTIZ ', NULL, NULL, ' 23 # 272 X 40 Y 42 ', NULL, ' 1 ', ' 13 ', ' 1730 ', NULL, NULL, ' 0 ', 1, '1966-10-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -1330,7 +1263,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (51441, ' ISAIAS CAHUICH ', NULL, NULL, ' 25 # 243 X 38 Y 40 ', NULL, ' 1 ', ' 14 ', ' 1090 ', NULL, NULL, ' 0 ', 1, '1967-12-10', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (51444, ' MARCO ANTONIO ALEJOS ', NULL, NULL, ' 20 # 222 X 31 Y 33 ', NULL, ' 1 ', ' 16 ', ' 1342 ', NULL, NULL, ' 557441 ', 1, '1967-12-20', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (51446, ' FELIX MARIN CHAN ', NULL, NULL, ' 17 # 224 X 36 Y 38 ', NULL, ' 1 ', ' 19 ', ' 390 ', NULL, NULL, ' 0 ', 1, '1968-01-12', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(51447, ' ADALIO SEGURA ', NULL, NULL, ' 25 # 173 X 18 Y 20 ', NULL, ' 1 ', ' 14 ', ' 2980 ', NULL, NULL, ' 0 ', 1, '1968-01-15', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(51447, ' ADALIO SEGURA ', NULL, NULL, ' 25 # 173 X 18 Y 20 ', NULL, ' 1 ', ' 14 ', ' 2980 ', NULL, NULL, ' 0 ', 1, '1968-01-15', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (51448, ' ELSA MA ZAPATA ', NULL, NULL, ' 29 # 182 X 20 Y 22 ', NULL, ' 1 ', ' 21 ', ' 570 ', NULL, NULL, ' 200414 ', 1, '1967-12-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (51449, ' WILLIAM ESTRELLA ', NULL, NULL, ' 34 # 200 X 23 Y 25 ', NULL, ' 1 ', ' 7 ', ' 720 ', NULL, NULL, ' 545698 ', 1, '1968-01-21', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -1564,7 +1497,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (51723, ' MANUEL SANTOS C ', NULL, NULL, ' 25 # 227-B X 34 Y 36 ', NULL, ' 1 ', ' 14 ', ' 1550 ', NULL, NULL, ' 583918 ', 1, '1971-07-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (51725, ' ORLANDO ROSADO ', NULL, NULL, ' 21  # 191 X 28 Y 30 ', NULL, ' 1 ', ' 12 ', ' 1810 ', NULL, NULL, ' 2078309 ', 2, '1971-07-13', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (51726, ' RAFAEL QUINTAL ', NULL, NULL, ' 19 # 200 X 24 Y 26 ', NULL, ' 1 ', ' 11 ', ' 1120 ', NULL, NULL, ' 0 ', 1, '1971-07-13', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(51727, ' RUBI MIREYA SOSA ', NULL, NULL, ' 21 # 280  X 42 Y 44 ', NULL, ' 1 ', ' 12 ', ' 360 ', NULL, NULL, ' 557563 ', 1, '1971-07-14', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(51727, ' RUBI MIREYA SOSA ', NULL, NULL, ' 21 # 280  X 42 Y 44 ', NULL, ' 1 ', ' 12 ', ' 360 ', NULL, NULL, ' 557563 ', 1, '1971-07-14', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (51728, ' MARCIAL PERAZA V ', NULL, NULL, ' 28B X 21  Y 23 ', NULL, ' 1 ', ' 12 ', ' 1710 ', NULL, NULL, ' 0 ', 2, '1971-07-20', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (51729, ' CARLOS HUMBERTO CETINA ', NULL, NULL, ' 28 # 214-C X 27 Y 29 ', NULL, ' 1 ', ' 5 ', ' 2330 ', NULL, NULL, ' 899428 ', 1, '1971-07-21', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -1798,7 +1731,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (51980, ' ELIA AYALA DE U ', NULL, NULL, ' 38 # 200A X 23 Y 25 ', NULL, ' 1 ', ' 8 ', ' 1940 ', NULL, NULL, ' 0 ', 1, '1975-05-26', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (51981, ' MARIA CONCEPCION CASTILLO ', NULL, NULL, ' 17 # 191-A X 22 Y 24 ', NULL, ' 1 ', ' 19 ', ' 1560 ', NULL, NULL, ' 15002105 ', 1, '1975-06-10', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (51982, ' ARMINDA BAEZA ', NULL, NULL, ' 25 # 186B X 18 Y 20 ', NULL, ' 1 ', ' 14 ', ' 3040 ', NULL, NULL, ' 899937 ', 1, '1975-06-10', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(51984, ' NIDIA A. GONZALEZ ', NULL, NULL, ' 17 # 191 X 22 Y 24 ', NULL, ' 1 ', ' 19 ', ' 1540 ', NULL, NULL, ' 15001487 ', 1, '1975-07-02', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(51984, ' NIDIA A. GONZALEZ ', NULL, NULL, ' 17 # 191 X 22 Y 24 ', NULL, ' 1 ', ' 19 ', ' 1540 ', NULL, NULL, ' 15001487 ', 1, '1975-07-02', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (51985, ' GLADYS FELICITAS CHAN ', NULL, NULL, ' 25 # 248-A X 38 Y 40 ', NULL, ' 1 ', ' 14 ', ' 1100 ', NULL, NULL, ' 69321 ', 1, '1975-07-10', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (51986, ' CANDIDO CASTRO S ', NULL, NULL, ' 27 # 179A X 20 Y 22 ', NULL, ' 1 ', ' 15 ', ' 1620 ', NULL, NULL, ' 0 ', 1, '1975-07-22', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -2033,7 +1966,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (52230, ' GILBERTO GONZALEZ SIMA ', NULL, NULL, ' 42 # 176 X 17 Y 19 ', NULL, ' 1 ', ' 17 ', ' 2300 ', NULL, NULL, ' 0 ', 1, '1978-03-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (52231, ' ADEMAR EK TZUN ', NULL, NULL, ' 17 # 232A X 32 Y 34 ', NULL, ' 1 ', ' 10 ', ' 2320 ', NULL, NULL, '  ', 1, '1978-04-02', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (52232, ' JUAN BAUTISTA UCAN DZUL ', NULL, NULL, ' 34 # 186 X 17 Y 19 ', NULL, ' 1 ', ' 7 ', ' 390 ', NULL, NULL, ' 899456 ', 1, '1978-04-02', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(52233, ' ADEMAR MATA ', NULL, NULL, ' 36 # 194 X 21 Y 23 ', NULL, ' 1 ', ' 8 ', ' 530 ', NULL, NULL, ' 72654 ', 1, '1978-04-03', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(52233, ' ADEMAR MATA ', NULL, NULL, ' 36 # 194 X 21 Y 23 ', NULL, ' 1 ', ' 8 ', ' 530 ', NULL, NULL, ' 72654 ', 1, '1978-04-03', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (52234, ' ERNESTO GONZALEZ ', NULL, NULL, ' 40 # 201 X 25 Y 27 ', NULL, ' 1 ', ' 8 ', ' 2410 ', NULL, NULL, '  ', 1, '1978-04-17', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (52235, ' BRENDA MARIA PERAZA ', NULL, NULL, ' 23 # 223-D X 30 Y 32 ', NULL, ' 1 ', ' 13 ', ' 560 ', NULL, NULL, ' 999459 ', 1, '1978-04-18', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -2266,7 +2199,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (52469, ' MARIO IX TEC ', NULL, NULL, ' 33 # 190 X 22 Y 24 ', NULL, ' 1 ', ' 16 ', ' 2380 ', NULL, NULL, ' 0 ', 1, '1980-12-16', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (52470, ' ALFONSO COB YAM ', NULL, NULL, ' 15 # 208 X 28 Y 30 ', NULL, ' 1 ', ' 10 ', ' 1240 ', NULL, NULL, ' 107535 ', 1, '1980-12-16', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (52472, ' JOSEFINA VELA DE CH ', NULL, NULL, ' 25 # 205  X 26 Y 26A ', NULL, ' 1 ', ' 14 ', ' 2360 ', NULL, NULL, ' 893376 ', 2, '1980-12-28', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(52473, ' LUIS ALBERTO CHIM IX ', NULL, NULL, ' 33 # 200 X 24 Y 26 ', NULL, ' 1 ', ' 16 ', ' 2550 ', NULL, NULL, ' 0 ', 1, '1980-12-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(52473, ' LUIS ALBERTO CHIM IX ', NULL, NULL, ' 33 # 200 X 24 Y 26 ', NULL, ' 1 ', ' 16 ', ' 2550 ', NULL, NULL, ' 0 ', 1, '1980-12-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (52474, ' GREGORIO TEH TUYUB ', NULL, NULL, ' 40 # 200 X 19 Y 21 ', NULL, ' 1 ', ' 8 ', ' 2620 ', NULL, NULL, ' 0 ', 1, '1981-01-04', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (52475, ' RODOLFO LOZANO BONILLA ', NULL, NULL, ' 40 # 200A X 19 Y 21 ', NULL, ' 1 ', ' 8 ', ' 2640 ', NULL, NULL, ' 0 ', 1, '1981-01-06', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -2499,7 +2432,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (52721, ' BALTAZARA CASTRO RODRIGUEZ ', NULL, NULL, ' 25 # 238 X 34 Y 36 ', NULL, ' 1 ', ' 14 ', ' 1410 ', NULL, NULL, ' 998352 ', 1, '1982-05-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (52722, ' MARTHA P. CONTRERAS MENDOZA ', NULL, NULL, ' 21 # 216-H X 34 Y 36 ', NULL, ' 1 ', ' 12 ', ' 1000 ', NULL, NULL, ' 0 ', 1, '1982-05-26', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (52723, ' CARLOS MANUEL DELGADO MUKUL ', NULL, NULL, ' 31 # 203 X 26 Y 28 ', NULL, ' 1 ', ' 16 ', ' 730 ', NULL, NULL, ' 900275 ', 1, '1982-05-17', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(52724, ' CARLOS M VAZQUEZ A ', NULL, NULL, ' 19 # 232 X 36 Y 38 ', NULL, ' 1 ', ' 11 ', ' 2180 ', NULL, NULL, ' 125529 ', 1, '1982-05-17', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(52724, ' CARLOS M VAZQUEZ A ', NULL, NULL, ' 19 # 232 X 36 Y 38 ', NULL, ' 1 ', ' 11 ', ' 2180 ', NULL, NULL, ' 125529 ', 1, '1982-05-17', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (52725, ' SOFIA ALCOCER SANTOS ', NULL, NULL, ' 19 # 175 X 20 Y 22 ', NULL, ' 1 ', ' 11 ', ' 630 ', NULL, NULL, ' 0 ', 1, '1982-05-19', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (52726, ' LUIS A GERONIMO VALLE ', NULL, NULL, ' 22A # 203B X 31 Y 33 ', NULL, ' 1 ', ' 2 ', ' 50 ', NULL, NULL, ' 555390 ', 2, '1982-05-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -2733,7 +2666,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (52969, ' IRMA ALICIA COBA PECH ', NULL, NULL, ' 40 # 250 X 25 Y27 ', NULL, ' 1 ', ' 8 ', ' 2500 ', NULL, NULL, ' 0 ', 1, '1984-12-12', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (52970, ' ADALBERTO HUCHIM P ', NULL, NULL, ' 38 # 201D X 25 Y 27 ', NULL, ' 1 ', ' 8 ', ' 2032 ', NULL, NULL, ' 0 ', 1, '1984-12-16', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (52971, ' YADIRA CHABLE P ', NULL, NULL, ' 17 # 163 X 16 Y 18 ', NULL, ' 1 ', ' 19 ', ' 1850 ', NULL, NULL, ' 696702 ', 1, '1985-07-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(52972, ' NIDIA I CRUZ H ', NULL, NULL, ' 17 # 161 X 16 Y 18 ', NULL, ' 1 ', ' 19 ', ' 1860 ', NULL, NULL, ' 209315 ', 2, '1984-12-12', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(52972, ' NIDIA I CRUZ H ', NULL, NULL, ' 17 # 161 X 16 Y 18 ', NULL, ' 1 ', ' 19 ', ' 1860 ', NULL, NULL, ' 209315 ', 2, '1984-12-12', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (52973, ' MARIA CHAN DORANTES ', NULL, NULL, ' 17 # 152 X 16 Y 18 ', NULL, ' 1 ', ' 19 ', ' 1870 ', NULL, NULL, ' 209316 ', 2, '1985-01-02', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (52974, ' JUAN ANTONIO UC NAH ', NULL, NULL, ' 26 # 240C X 31 Y 33 ', NULL, ' 1 ', ' 4 ', ' 2150 ', NULL, NULL, ' 0 ', 1, '1984-12-16', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -2967,7 +2900,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (53269, ' ROSALINDA MAGAÑA ', NULL, NULL, ' 13 # 211 X 30 Y 32 ', NULL, ' 1 ', ' 9 ', ' 2175 ', NULL, NULL, ' 707978 ', 1, '1985-01-28', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (53270, ' MARIO CUA H ', NULL, NULL, ' 22B # 204C X 22A Y 35 ', NULL, ' 1 ', ' 20 ', ' 1790 ', NULL, NULL, ' 0 ', 1, '1985-01-13', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (53272, ' FELIX CARDEÑA A ', NULL, NULL, ' 36 # 187A X 17 Y 19 ', NULL, ' 1 ', ' 8 ', ' 840 ', NULL, NULL, ' 0 ', 1, '1985-02-05', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(53273, ' JUANA MARIA CHAN Y AKE ', NULL, NULL, ' 28 # 163B X 15 Y 17 ', NULL, ' 1 ', ' 5 ', ' 1160 ', NULL, NULL, ' 15002160 ', 1, '1985-01-27', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(53273, ' JUANA MARIA CHAN Y AKE ', NULL, NULL, ' 28 # 163B X 15 Y 17 ', NULL, ' 1 ', ' 5 ', ' 1160 ', NULL, NULL, ' 15002160 ', 1, '1985-01-27', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (53274, ' DANIEL COCOM POOT ', NULL, NULL, ' 33 # 184A X 22A Y 24 ', NULL, ' 1 ', ' 16 ', ' 2260 ', NULL, NULL, ' 6061937 ', 1, '1985-01-16', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (53276, ' FELIPA CHAN ', NULL, NULL, ' 35A # 226 X 22 Y 22A ', NULL, ' 1 ', ' 18 ', ' 840 ', NULL, NULL, ' 771331 ', 1, '1985-01-20', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -3201,7 +3134,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (53780, ' JUANA MA MAY ', NULL, NULL, ' 27 # 237C X 36 Y 38 ', NULL, ' 1 ', ' 15 ', ' 70 ', NULL, NULL, ' 602687 ', 1, '1987-05-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (53783, ' LAZARO LORENSO PACHECO ', NULL, NULL, ' 22 # 204 X 25 Y 27 ', NULL, ' 1 ', ' 2 ', ' 1130 ', NULL, NULL, ' 2684430 ', 1, '1987-05-13', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (53785, ' YOLANDA SANTOS ', NULL, NULL, ' 25 # 225 X 32 Y 34 ', NULL, ' 1 ', ' 14 ', ' 1610 ', NULL, NULL, ' 12123 ', 2, '1987-05-13', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(53791, ' NELDA CASTRO ', NULL, NULL, ' 14 # 177-A X 27 Y 29 ', NULL, ' 1 ', ' 1 ', ' 300 ', NULL, NULL, ' 0 ', 1, '1987-05-21', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(53791, ' NELDA CASTRO ', NULL, NULL, ' 14 # 177-A X 27 Y 29 ', NULL, ' 1 ', ' 1 ', ' 300 ', NULL, NULL, ' 0 ', 1, '1987-05-21', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (53792, ' NIDIA MARIA EK CHAN ', NULL, NULL, ' 14 # 228 X 25 Y 27 ', NULL, ' 1 ', ' 1 ', ' 210 ', NULL, NULL, ' 90557559 ', 1, '1987-05-21', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (53816, ' ELIEZER RODRIGUEZ CACH ', NULL, NULL, ' 35-A X 22 Y 22-A ', NULL, ' 1 ', ' 18 ', ' 1374 ', NULL, NULL, '  ', 1, '2017-06-22', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -3437,7 +3370,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (54104, ' JOSE AYUSO BORGES ', NULL, NULL, ' 13 # 177-B X 18 Y 20 ', NULL, ' 1 ', ' 9 ', ' 1270 ', NULL, NULL, ' 889535 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (54105, ' CARMEN CAB SERRALTA ', NULL, NULL, ' 20 # 174 X 13 Y 15 ', NULL, ' 1 ', ' 20 ', ' 120 ', NULL, NULL, ' 90557336 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (54106, ' ARMINDA YOLANDA CHAN VELA ', NULL, NULL, ' 20 # 181 X 13 Y 15 ', NULL, ' 1 ', ' 20 ', ' 140 ', NULL, NULL, ' 15001631 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(54107, ' ADALIO LOPEZ ', NULL, NULL, ' 20 # 182 X 13 Y 15 ', NULL, ' 1 ', ' 20 ', ' 145 ', NULL, NULL, ' 0 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(54107, ' ADALIO LOPEZ ', NULL, NULL, ' 20 # 182 X 13 Y 15 ', NULL, ' 1 ', ' 20 ', ' 145 ', NULL, NULL, ' 0 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (54109, ' FRANCISCO XICUM A ', NULL, NULL, ' 20 # 176 X 13 Y 15 ', NULL, ' 1 ', ' 20 ', ' 160 ', NULL, NULL, ' 90557335 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (54110, ' ESTHER SIMA BACAB ', NULL, NULL, ' 20 X 13 Y 15 ', NULL, ' 1 ', ' 20 ', ' 170 ', NULL, NULL, ' 90557615 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -3671,7 +3604,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (54351, ' MARIO M ESPAÑA C ', NULL, NULL, ' 17 # 263 X 38 Y 40 ', NULL, ' 1 ', ' 19 ', ' 300 ', NULL, NULL, ' 0 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (54352, ' JUAN JOSE DURAN ESCALANTE ', NULL, NULL, ' 17 # 265-B X 38 Y 40 ', NULL, ' 1 ', ' 19 ', ' 266 ', NULL, NULL, ' 0 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (54353, ' IRENE GUADALUPE DIAZ ', NULL, NULL, ' 17 # 266-A X 38 Y 40 ', NULL, ' 1 ', ' 19 ', ' 240 ', NULL, NULL, ' 0 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(54354, ' MARTHA SOFIA CANCHE ', NULL, NULL, ' 17 # 267 X 38 Y 40 ', NULL, ' 1 ', ' 19 ', ' 230 ', NULL, NULL, ' 0 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(54354, ' MARTHA SOFIA CANCHE ', NULL, NULL, ' 17 # 267 X 38 Y 40 ', NULL, ' 1 ', ' 19 ', ' 230 ', NULL, NULL, ' 0 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (54355, ' MARIA DE LA LUZ AGUILAR ', NULL, NULL, ' 17 # 268 X 38 Y 40 ', NULL, ' 1 ', ' 19 ', ' 220 ', NULL, NULL, ' 0 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (54356, ' MARIA EDILBERTA VAZQUEZ ', NULL, NULL, ' 17 X 38 Y 40 ', NULL, ' 1 ', ' 19 ', ' 210 ', NULL, NULL, ' 900109 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -3906,7 +3839,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (54610, ' MIGUEL KU CACH ', NULL, NULL, ' 19 # 236 X 38 Y 40 ', NULL, ' 1 ', ' 11 ', ' 2260 ', NULL, NULL, ' 0 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (54611, ' MA LUISA PUCH E ', NULL, NULL, ' 19 # 230 X 36 Y 38 ', NULL, ' 1 ', ' 11 ', ' 2140 ', NULL, NULL, ' 899280 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (54612, ' LANDY FALCON CASTRO ', NULL, NULL, ' 19 # 230 X 36 Y 38 ', NULL, ' 1 ', ' 11 ', ' 2100 ', NULL, NULL, ' 900161 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(54613, ' JUAN CHUC ', NULL, NULL, ' 38 # 191 X 17 Y 19 ', NULL, ' 1 ', ' 8 ', ' 1690 ', NULL, NULL, ' 0 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(54613, ' JUAN CHUC ', NULL, NULL, ' 38 # 191 X 17 Y 19 ', NULL, ' 1 ', ' 8 ', ' 1690 ', NULL, NULL, ' 0 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (54614, ' FERNANDO AMBROSIO SAMOS ', NULL, NULL, ' 27 # 208 X 12 Y 14 ', NULL, ' 1 ', ' 15 ', ' 2363 ', NULL, NULL, ' 557240 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (54615, ' ELSA MARIA DURAN Y UC ', NULL, NULL, ' 16 # 140 X 27 Y 29 ', NULL, ' 1 ', ' 1 ', ' 880 ', NULL, NULL, ' 90209331 ', 1, '1988-01-11', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -4142,7 +4075,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (54884, ' LUIS A SOLIS PUERTO ', NULL, NULL, ' 28 # 187A X 19 Y 21 ', NULL, ' 1 ', ' 5 ', ' 1660 ', NULL, NULL, ' 998712 ', 1, '1988-10-14', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (54885, ' FLORENTINO NOH C ', NULL, NULL, ' 26 # 248 X 33 Y 35 ', NULL, ' 1 ', ' 4 ', ' 2330 ', NULL, NULL, ' 333224 ', 1, '1988-10-14', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (54886, ' CARLOS M. VAZQUEZ Y ESPADAS ', NULL, NULL, ' 28 # 240 X 31 Y 33 ', NULL, ' 1 ', ' 5 ', ' 2680 ', NULL, NULL, ' 0 ', 2, '1988-10-14', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(54887, ' PRODUCTORES PORCICOLAS DEL ', NULL, NULL, ' 36 # 197 X 23 Y 25 ', NULL, ' 1 ', ' 8 ', ' 480 ', NULL, NULL, ' 738601 ', 1, '1988-10-14', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(54887, ' PRODUCTORES PORCICOLAS DEL ', NULL, NULL, ' 36 # 197 X 23 Y 25 ', NULL, ' 1 ', ' 8 ', ' 480 ', NULL, NULL, ' 738601 ', 1, '1988-10-14', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (54888, ' JOSE ALFREDO TAMAY CHAN ', NULL, NULL, ' 36 # 194 H X 19 Y 21 ', NULL, ' 1 ', ' 8 ', ' 650 ', NULL, NULL, ' 0 ', 1, '1988-10-14', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (54889, ' JUAN DE DIOS VELA TZUN ', NULL, NULL, ' 16 # 97 X 15 Y 17 ', NULL, ' 1 ', ' 1 ', ' 1350 ', NULL, NULL, ' 90209637 ', 2, '1988-10-14', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -4378,7 +4311,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (55139, ' BERNARDINA VENEGAS ', NULL, NULL, ' 29 # 210 X 40 Y 42 ', NULL, ' 1 ', ' 21 ', ' 2180 ', NULL, NULL, ' 0 ', 1, '1990-04-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (55140, ' EMMA DEL ROSARIO AMARO NAAL ', NULL, NULL, ' 30 # 216 X 29 Y 31 ', NULL, ' 1 ', ' 6 ', ' 700 ', NULL, NULL, ' 602426 ', 1, '1990-04-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (55141, ' EMILIANO ARGAEZ M ', NULL, NULL, ' 21 # 184C X 22 Y 24 ', NULL, ' 1 ', ' 12 ', ' 2570 ', NULL, NULL, ' 0 ', 1, '1990-04-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(55142, ' ANGEL RAUL CANCHE ', NULL, NULL, ' 22 # 206 X 27 Y 29 ', NULL, ' 1 ', ' 2 ', ' 1050 ', NULL, NULL, ' 651795 ', 1, '1990-04-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(55142, ' ANGEL RAUL CANCHE ', NULL, NULL, ' 22 # 206 X 27 Y 29 ', NULL, ' 1 ', ' 2 ', ' 1050 ', NULL, NULL, ' 651795 ', 1, '1990-04-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (55143, ' ALBA ROSA MEDINA TUN ', NULL, NULL, ' 32 # 208 X 27 Y 29 ', NULL, ' 1 ', ' 7 ', ' 1950 ', NULL, NULL, ' 0 ', 1, '1990-04-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (55144, ' ALONSO PECH FUENTES ', NULL, NULL, ' 25 # 244 X 36 Y 38 ', NULL, ' 1 ', ' 14 ', ' 1250 ', NULL, NULL, ' 899738 ', 1, '1990-04-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -4612,7 +4545,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (55384, ' AREMY SHOMARA ARGAEZ ', NULL, NULL, ' 48A # 219 X 17A Y 17B ', NULL, ' 1 ', ' 17 ', ' 1170 ', NULL, NULL, ' 0 ', 1, '1991-02-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (55385, ' BERTHA TRUJEQUE CAMARA ', NULL, NULL, ' 52 # 222 X 17A Y 17B ', NULL, ' 1 ', ' 17 ', ' 690 ', NULL, NULL, ' 0 ', 1, '1991-02-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (55386, ' JESUS ORLANDO CAMPOS ', NULL, NULL, ' 52 # 232 X 17A Y 17B ', NULL, ' 1 ', ' 17 ', ' 660 ', NULL, NULL, ' 899816 ', 1, '1993-12-31', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(55387, ' LUIS FLORES TAX ', NULL, NULL, ' 52 # 248 X 17B Y 19 ', NULL, ' 1 ', ' 17 ', ' 580 ', NULL, NULL, ' 209434 ', 1, '1991-02-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(55387, ' LUIS FLORES TAX ', NULL, NULL, ' 52 # 248 X 17B Y 19 ', NULL, ' 1 ', ' 17 ', ' 580 ', NULL, NULL, ' 209434 ', 1, '1991-02-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (55388, ' LUIS ALFREDO ECHEVERRIA ', NULL, NULL, ' 50 # 230 X 17A Y 17B ', NULL, ' 1 ', ' 17 ', ' 970 ', NULL, NULL, ' 0 ', 1, '1991-02-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (55389, ' WILBERTH JOSE BAEZA SOSA ', NULL, NULL, ' 52 # 218 X 17A Y 17B ', NULL, ' 1 ', ' 17 ', ' 710 ', NULL, NULL, ' 0 ', 1, '1991-02-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -4846,7 +4779,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (55622, ' MARIA CRISTINA TEC Y MOO ', NULL, NULL, ' 26 X 37 Y 39 ', NULL, ' 1 ', ' 4 ', ' 2820 ', NULL, NULL, ' 0 ', 1, '1991-10-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (55623, ' FREDY ALBERTO DELGADO ', NULL, NULL, ' 50 # 107 ', NULL, ' 1 ', ' 14 ', ' 260 ', NULL, NULL, ' 275437 ', 1, '1991-10-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (55624, ' EDUARDO MAY SALAS ', NULL, NULL, ' 25 BENITO JUAREZ ', NULL, ' 1 ', ' 14 ', ' 310 ', NULL, NULL, '  ', 1, '1991-10-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(55625, ' RAMIRO MEDINA CAL ', NULL, NULL, ' 25 BENITO JUAREZ ', NULL, ' 1 ', ' 14 ', ' 335 ', NULL, NULL, ' 464715 ', 1, '1991-10-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(55625, ' RAMIRO MEDINA CAL ', NULL, NULL, ' 25 BENITO JUAREZ ', NULL, ' 1 ', ' 14 ', ' 335 ', NULL, NULL, ' 464715 ', 1, '1991-10-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (55627, ' DILIA MARIA DURAN KU ', NULL, NULL, ' 25 # 110 ', NULL, ' 1 ', ' 14 ', ' 370 ', NULL, NULL, ' 0 ', 1, '1991-10-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (55628, ' MARIA JESUS CHUC CAAMAL ', NULL, NULL, ' 27 S/N X 48 Y 48-B ', NULL, ' 1 ', ' 14 ', ' 450 ', NULL, NULL, ' 0 ', 1, '1991-10-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -5082,7 +5015,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (55869, ' MARGARITA GARCIA VERA ', NULL, NULL, ' 24 # 140C X 11 Y 13 ', NULL, ' 1 ', ' 3 ', ' 300 ', NULL, NULL, ' 0 ', 2, '1992-06-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (55870, ' MARGARITA SANTOS ', NULL, NULL, ' 18 # 220 X 29 Y 31 ', NULL, ' 1 ', ' 1 ', ' 2273 ', NULL, NULL, ' 490604 ', 1, '1992-06-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (55871, ' ADA MARIA BALAM ', NULL, NULL, ' 35 # 257 X 26 Y 28 ', NULL, ' 1 ', ' 18 ', ' 2370 ', NULL, NULL, ' 0 ', 1, '1992-06-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(55872, ' DELTA CHABLE MATA ', NULL, NULL, ' 40 # 198 X 21 Y 19 ', NULL, ' 1 ', ' 8 ', ' 2680 ', NULL, NULL, ' 0 ', 1, '1992-06-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(55872, ' DELTA CHABLE MATA ', NULL, NULL, ' 40 # 198 X 21 Y 19 ', NULL, ' 1 ', ' 8 ', ' 2680 ', NULL, NULL, ' 0 ', 1, '1992-06-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (55873, ' ROSA MARIA ORTIZ ITZA ', NULL, NULL, ' 40 X 11 Y 13 ', NULL, ' 1 ', ' 8 ', ' 3155 ', NULL, NULL, ' 3556 ', 1, '1992-06-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (55874, ' JAVIER SALDIVAR ', NULL, NULL, ' 20 # 198 X 25 Y 27 ', NULL, ' 1 ', ' 20 ', ' 880 ', NULL, NULL, ' 90209247 ', 1, '1992-06-24', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -5317,7 +5250,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (56109, ' JOSE ULISES SIERRA PACHECO ', NULL, NULL, ' 27 # 156 X 18 Y 20 ', NULL, ' 1 ', ' 15 ', ' 1970 ', NULL, NULL, ' 106765 ', 1, '1994-04-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (56110, ' ADNER SALATIEL VAZQUEZ CHUC ', NULL, NULL, ' 29 # 225-D X 32 Y 34 ', NULL, ' 1 ', ' 21 ', ' 1620 ', NULL, NULL, ' 1309251 ', 2, '1993-12-31', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (56111, ' MILKA SARAI DOMINGUEZ ', NULL, NULL, ' 30 # 217-J X 31 Y 33 ', NULL, ' 1 ', ' 6 ', ' 480 ', NULL, NULL, ' 0 ', 1, '1994-01-31', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(56112, ' TELMA ARMINDA NOVELO ', NULL, NULL, ' 22-A # 208-D X 35 Y 33 ', NULL, ' 1 ', ' 2 ', ' 285 ', NULL, NULL, ' 0 ', 1, '1994-01-31', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(56112, ' TELMA ARMINDA NOVELO ', NULL, NULL, ' 22-A # 208-D X 35 Y 33 ', NULL, ' 1 ', ' 2 ', ' 285 ', NULL, NULL, ' 0 ', 1, '1994-01-31', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (56113, ' JOSE ORTIZ MORENO ', NULL, NULL, ' 32 # 173 X 15 Y 17 ', NULL, ' 1 ', ' 7 ', ' 2920 ', NULL, NULL, ' 15001570 ', 1, '1994-01-31', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (56114, ' GILBERTO CACH TUN ', NULL, NULL, ' 31 # 182 X 18 Y 20 ', NULL, ' 1 ', ' 16 ', ' 1420 ', NULL, NULL, ' 0 ', 1, '1994-01-31', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -5552,7 +5485,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (56355, ' LUIS ARMANDO CETINA SALAZAR ', NULL, NULL, ' 16 X 31 Y 29 ', NULL, ' 1 ', ' 1 ', ' 765 ', NULL, NULL, ' 0 ', 2, '1995-02-21', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (56356, ' JOSEFINA DOMINGUEZ ', NULL, NULL, ' 18 # 211 X 29 Y 31 ', NULL, ' 1 ', ' 1 ', ' 2720 ', NULL, NULL, '  ', 1, '1994-02-21', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (56357, ' CATALINA TUN CAAMAL ', NULL, NULL, ' 24 # 169 X 13 Y 15 ', NULL, ' 1 ', ' 3 ', ' 640 ', NULL, NULL, ' 729216 ', 1, '1995-02-20', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(56358, ' MARIA GUADALUPE CHUIL ', NULL, NULL, ' 24 # 202 X 25 Y 25A ', NULL, ' 1 ', ' 3 ', ' 1560 ', NULL, NULL, ' 0 ', 1, '1994-02-20', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(56358, ' MARIA GUADALUPE CHUIL ', NULL, NULL, ' 24 # 202 X 25 Y 25A ', NULL, ' 1 ', ' 3 ', ' 1560 ', NULL, NULL, ' 0 ', 1, '1994-02-20', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (56359, ' ROSA MARIA VARGUEZ ', NULL, NULL, ' 24 # 211 X 27 Y 29 ', NULL, ' 1 ', ' 3 ', ' 1920 ', NULL, NULL, ' 999196 ', 2, '1995-02-21', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (56360, ' ROSA ELENA CASTRO ', NULL, NULL, ' 22 # 155-B X 13 Y 11 ', NULL, ' 1 ', ' 2 ', ' 1600 ', NULL, NULL, ' 159291 ', 1, '1995-02-21', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -5787,7 +5720,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (56592, ' MARIA CRISTINA NOH MEDINA ', NULL, NULL, ' 38 # 187 X 19 Y 21 ', NULL, ' 1 ', ' 8 ', ' 1786 ', NULL, NULL, ' 0 ', 1, '1996-07-31', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (56593, ' MARGARITA OJEDA ', NULL, NULL, ' 40 # 148 X 11 Y 13 ', NULL, ' 1 ', ' 8 ', ' 3205 ', NULL, NULL, ' 0 ', 1, '1996-07-31', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (56594, ' MA. DEL CARMEN PECH ', NULL, NULL, ' 31 # 208 X 28 Y 30 ', NULL, ' 1 ', ' 16 ', ' 505 ', NULL, NULL, ' 0 ', 1, '1996-07-31', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(56595, ' JOSUE GABRIEL BELTRAN ', NULL, NULL, ' 36 # 209-A X 27 Y 29 ', NULL, ' 1 ', ' 8 ', ' 135 ', NULL, NULL, ' 999097 ', 1, '1996-07-31', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(56595, ' JOSUE GABRIEL BELTRAN ', NULL, NULL, ' 36 # 209-A X 27 Y 29 ', NULL, ' 1 ', ' 8 ', ' 135 ', NULL, NULL, ' 999097 ', 1, '1996-07-31', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (56596, ' JUAN MARTIN SABIDO ', NULL, NULL, ' 28 X 33 Y 35 ', NULL, ' 1 ', ' 5 ', ' 2720 ', NULL, NULL, ' 999348 ', 1, '1996-08-31', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (56597, ' JUAN LUIS COCOM SANCHEZ ', NULL, NULL, ' 14 # 199 X 25 Y 21 ', NULL, ' 1 ', ' 1 ', ' 135 ', NULL, NULL, ' 90562789 ', 1, '1996-08-31', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -6022,7 +5955,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (56918, ' ROSA GEORGINA DOMINGUEZ ', NULL, NULL, ' 25 # 219 X 32 Y 34 ', NULL, ' 1 ', ' 14 ', ' 1700 ', NULL, NULL, ' 299258 ', 1, '1997-11-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (56919, ' MARIA OFELIA SIMA ', NULL, NULL, ' 16 # 204 X 25 Y 27 ', NULL, ' 1 ', ' 1 ', ' 946 ', NULL, NULL, ' 107738 ', 1, '1997-11-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (56920, ' BLANCA GOMEZ PACHECO ', NULL, NULL, ' 22 X 17 Y 19 ', NULL, ' 1 ', ' 2 ', ' 1400 ', NULL, NULL, ' 0 ', 1, '1997-12-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(56921, ' IRMA ALVARADO ', NULL, NULL, ' 32 # 201-C X 25 Y 27 ', NULL, ' 1 ', ' 7 ', ' 2335 ', NULL, NULL, ' 18738 ', 1, '1997-12-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(56921, ' IRMA ALVARADO ', NULL, NULL, ' 32 # 201-C X 25 Y 27 ', NULL, ' 1 ', ' 7 ', ' 2335 ', NULL, NULL, ' 18738 ', 1, '1997-12-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (56922, ' EDGAR PACHECO ALEJOS ', NULL, NULL, ' 32 X 11 Y 13 ', NULL, ' 1 ', ' 7 ', ' 3330 ', NULL, NULL, ' 15001769 ', 1, '1997-12-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (56923, ' ADRIAN A. ALEJOS ', NULL, NULL, ' 32 X 15 Y 17 ', NULL, ' 1 ', ' 7 ', ' 2965 ', NULL, NULL, ' 28556 ', 1, '1997-12-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -6260,7 +6193,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (57168, ' LIMBERTH F. VELA AKE ', NULL, NULL, ' 31 # 198-A X 24 Y 26 ', NULL, ' 1 ', ' 16 ', ' 930 ', NULL, NULL, ' 0 ', 1, '1998-06-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (57169, ' JORGE GONGORA ', NULL, NULL, ' 33 X 22 Y 22-A ', NULL, ' 1 ', ' 16 ', ' 2153 ', NULL, NULL, ' 119075 ', 1, '1998-06-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (57170, ' NORMA LORENA MORENO ', NULL, NULL, ' 33 # 187 X 22 Y 22A ', NULL, ' 1 ', ' 16 ', ' 2235 ', NULL, NULL, ' 0 ', 1, '1998-06-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(57171, ' MARIA ADELA AKE LLANES ', NULL, NULL, ' 42 X 19 Y 21 ', NULL, ' 1 ', ' 17 ', ' 2370 ', NULL, NULL, ' 118913 ', 1, '1998-06-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(57171, ' MARIA ADELA AKE LLANES ', NULL, NULL, ' 42 X 19 Y 21 ', NULL, ' 1 ', ' 17 ', ' 2370 ', NULL, NULL, ' 118913 ', 1, '1998-06-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (57172, ' JUANA MARIA DURAN SANTOS ', NULL, NULL, ' C. 46 S/N X 11 Y 13 ', NULL, ' 1 ', ' 17 ', ' 2775 ', NULL, NULL, ' 245364 ', 1, '1998-06-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (57173, ' ROGER F. DZIB CHAN ', NULL, NULL, ' 35 # 202 X 26 Y 28 ', NULL, ' 1 ', ' 18 ', ' 2430 ', NULL, NULL, ' 0 ', 1, '1998-06-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -6495,7 +6428,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (57408, ' LIBNI TENREIRO CONTRERAS ', NULL, NULL, ' 26 X 33 Y 35 ', NULL, ' 1 ', ' 4 ', ' 2425 ', NULL, NULL, ' 0 ', 1, '1999-02-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (57409, ' FREDDY ALONSO ESPAÑA ', NULL, NULL, ' 9 # 266 X 30 Y 32 ', NULL, ' 1 ', ' 5 ', ' 218 ', NULL, NULL, ' 15312576 ', 1, '1999-02-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (57410, ' FLORENCIA MEJIA SEGURA ', NULL, NULL, ' 28 # 215 X 27 Y 29 ', NULL, ' 1 ', ' 5 ', ' 2305 ', NULL, NULL, ' 0 ', 1, '1999-02-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(57411, ' ENRIQUE CACH CACH ', NULL, NULL, ' 28 # 208 X 31 Y 33 ', NULL, ' 1 ', ' 5 ', ' 2545 ', NULL, NULL, ' 0 ', 1, '1999-02-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(57411, ' ENRIQUE CACH CACH ', NULL, NULL, ' 28 # 208 X 31 Y 33 ', NULL, ' 1 ', ' 5 ', ' 2545 ', NULL, NULL, ' 0 ', 1, '1999-02-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (57412, ' WENDY BEATRIZ VAZQUEZ CARDEÑA ', NULL, NULL, ' 28 # 229 X 31 Y 33 ', NULL, ' 1 ', ' 5 ', ' 2575 ', NULL, NULL, ' 0 ', 1, '1999-02-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (57413, ' NORA ELINA VAZQUEZ C ', NULL, NULL, ' 28 # 233 X 31 Y 33 ', NULL, ' 1 ', ' 5 ', ' 2605 ', NULL, NULL, ' 0 ', 1, '1999-02-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -6730,7 +6663,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (57645, ' LUCY GUADALUPE PUCH DZUL ', NULL, NULL, ' 32 X 35 Y 37 ', NULL, ' 1 ', ' 7 ', ' 1543 ', NULL, NULL, ' 0 ', 1, '1999-09-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (57646, ' TERESA KU PECH ', NULL, NULL, ' 27 # 146 X 16 Y 18 ', NULL, ' 1 ', ' 15 ', ' 2145 ', NULL, NULL, ' 0 ', 1, '1999-09-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (57647, ' VENUS ELIZABETH IUIT CHAN ', NULL, NULL, ' 24 # 138 X 11 Y 13 ', NULL, ' 1 ', ' 3 ', ' 275 ', NULL, NULL, ' 15001721 ', 1, '1999-09-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(57648, ' LUIS BAH SANTOS ', NULL, NULL, ' 18 X 29 Y 31 ', NULL, ' 1 ', ' 1 ', ' 2667 ', NULL, NULL, ' 90209468 ', 1, '1999-09-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(57648, ' LUIS BAH SANTOS ', NULL, NULL, ' 18 X 29 Y 31 ', NULL, ' 1 ', ' 1 ', ' 2667 ', NULL, NULL, ' 90209468 ', 1, '1999-09-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (57649, ' LILIA MUKUL BALAM ', NULL, NULL, ' 22 # 168 X 11 Y 13 ', NULL, ' 1 ', ' 2 ', ' 1635 ', NULL, NULL, ' 15002255 ', 1, '1999-09-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (57650, ' MARTINA PECH CANO ', NULL, NULL, ' 19 X 34 Y 36 ', NULL, ' 1 ', ' 11 ', ' 2045 ', NULL, NULL, ' 0 ', 1, '1999-09-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -6966,7 +6899,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (57892, ' ROBERT UC CASTILLO ', NULL, NULL, ' 20 # 194 X 21 Y 19 ', NULL, ' 1 ', ' 20 ', ' 465 ', NULL, NULL, ' 90557514 ', 1, '2000-07-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (57893, ' ROSALIA MEX MEX ', NULL, NULL, ' 29 # 207 X 28 Y 30 ', NULL, ' 1 ', ' 21 ', ' 1355 ', NULL, NULL, ' 0 ', 1, '2000-07-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (57894, ' SABINO OLMEDO ', NULL, NULL, ' 29 X 38 Y 40 ', NULL, ' 1 ', ' 21 ', ' 2107 ', NULL, NULL, ' 531404 ', 1, '2000-07-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(57895, ' CFE TRANSMISION. ', NULL, NULL, ' KM 2.5 CARRET.TICUL-MUNA ', NULL, ' 1 ', ' 13 ', ' 1433 ', NULL, NULL, ' 1101747 ', 2, '2000-07-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(57895, ' CFE TRANSMISION. ', NULL, NULL, ' KM 2.5 CARRET.TICUL-MUNA ', NULL, ' 1 ', ' 13 ', ' 1433 ', NULL, NULL, ' 1101747 ', 2, '2000-07-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (57896, ' SANTOS ANDRES CHAN VERA ', NULL, NULL, ' 13 X 48 Y 50 ', NULL, ' 1 ', ' 17 ', ' 2925 ', NULL, NULL, ' 0 ', 1, '2000-07-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (57897, ' FILIBERTO PECH CAAMAL ', NULL, NULL, ' 13 X 48 Y 50 ', NULL, ' 1 ', ' 17 ', ' 2927 ', NULL, NULL, ' 0 ', 1, '2000-07-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -7201,7 +7134,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (58527, ' ADNER SALATIEL VAZQUEZ CHUC ', NULL, NULL, ' 42 X 13 Y 15 ', NULL, ' 1 ', ' 17 ', ' 1995 ', NULL, NULL, ' 0 ', 2, '2001-08-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (58528, ' LUIS ITZA COB ', NULL, NULL, ' 17 # 242 X 40 Y 42 ', NULL, ' 1 ', ' 19 ', ' 163 ', NULL, NULL, ' 0 ', 1, '2001-08-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (58529, ' ELOISA BE MEJIA ', NULL, NULL, ' 33 X 22 Y 22-A ', NULL, ' 1 ', ' 16 ', ' 2253 ', NULL, NULL, ' 0 ', 1, '2001-08-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(58530, ' YANELI CAROLINA GAMBOA CHAN ', NULL, NULL, ' 48 X 17 Y 19 ', NULL, ' 1 ', ' 17 ', ' 1391 ', NULL, NULL, ' 0 ', 1, '2001-08-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(58530, ' YANELI CAROLINA GAMBOA CHAN ', NULL, NULL, ' 48 X 17 Y 19 ', NULL, ' 1 ', ' 17 ', ' 1391 ', NULL, NULL, ' 0 ', 1, '2001-08-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (58531, ' LAZARO H. PAREDES TILAN ', NULL, NULL, ' 16 # 197-B X 19 Y 21 ', NULL, ' 1 ', ' 1 ', ' 1205 ', NULL, NULL, ' 90209336 ', 1, '2001-10-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (58532, ' FRANCISCO CHAN CHAN ', NULL, NULL, ' 22-A # 218-B X 35 Y 35-A ', NULL, ' 1 ', ' 2 ', ' 485 ', NULL, NULL, ' 0 ', 1, '2001-10-29', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -7435,7 +7368,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (58760, ' FRANCISCO BRICEÑO FLOTA ', NULL, NULL, ' 22B CARR. A PUSTUNICH ', NULL, ' 1 ', ' 20 ', ' 1535 ', NULL, NULL, ' 34134 ', 2, '2002-07-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (58761, ' MARCO A. GONZALEZ ESPINOZA ', NULL, NULL, ' 26 # 169 X 15 Y 17 ', NULL, ' 1 ', ' 4 ', ' 460 ', NULL, NULL, ' 15001545 ', 1, '2002-07-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (58762, ' GABRIEL POOT MAY ', NULL, NULL, ' 38 X 9 Y 11 ', NULL, ' 1 ', ' 8 ', ' 1081 ', NULL, NULL, ' 0 ', 1, '2002-07-30', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(58763, ' DELSY RIVERO PINO ', NULL, NULL, ' 14 # 130 X 19 Y 17 ', NULL, ' 1 ', ' 1 ', ' 77 ', NULL, NULL, ' 90557550 ', 2, '2002-09-26', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(58763, ' DELSY RIVERO PINO ', NULL, NULL, ' 14 # 130 X 19 Y 17 ', NULL, ' 1 ', ' 1 ', ' 77 ', NULL, NULL, ' 90557550 ', 2, '2002-09-26', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (58764, ' JOSE LUIS BRACAMONTE ', NULL, NULL, ' 18 X 35 ', NULL, ' 1 ', ' 1 ', ' 2970 ', NULL, NULL, ' 0 ', 2, '2002-09-26', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (58765, ' DANIEL E. MEJIA M. ', NULL, NULL, ' 22 # 224 X 29 Y 31 ', NULL, ' 1 ', ' 2 ', ' 969 ', NULL, NULL, ' 0 ', 1, '2002-09-26', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -7669,7 +7602,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (58993, ' TOMAS COUOH CRUZ ', NULL, NULL, ' 28 # 149 X 15 Y 13 ', NULL, ' 1 ', ' 5 ', ' 823 ', NULL, NULL, ' 15312882 ', 1, '2003-11-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (58994, ' MIGUEL DZUL RAMIREZ ', NULL, NULL, ' 34 # 206 X 27 Y 29 ', NULL, ' 1 ', ' 7 ', ' 1005 ', NULL, NULL, ' 0 ', 1, '2003-11-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (58995, ' LUIS FERNANDO TZUN ', NULL, NULL, ' 32 X 35 Y 37 ', NULL, ' 1 ', ' 7 ', ' 1558 ', NULL, NULL, ' 0 ', 1, '2003-11-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(58996, ' CARLOS CACH BALAM ', NULL, NULL, ' 40 # 157 X 11 Y 9 ', NULL, ' 1 ', ' 8 ', ' 3219 ', NULL, NULL, ' 278289 ', 1, '2003-11-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(58996, ' CARLOS CACH BALAM ', NULL, NULL, ' 40 # 157 X 11 Y 9 ', NULL, ' 1 ', ' 8 ', ' 3219 ', NULL, NULL, ' 278289 ', 1, '2003-11-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (58997, ' MARCOS ANTONIO TAX TUT ', NULL, NULL, ' 11 # 206 X 30 Y 28 ', NULL, ' 1 ', ' 9 ', ' 233 ', NULL, NULL, ' 107731 ', 1, '2003-11-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (58998, ' MINERVA ARACELY CHIN HAU ', NULL, NULL, ' 13 X 14 Y 16 ', NULL, ' 1 ', ' 9 ', ' 828 ', NULL, NULL, ' 0 ', 1, '2003-11-25', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -7902,7 +7835,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (59225, ' ADRIANA BE CHUC ', NULL, NULL, ' 11 SN.JOAQUIN II ', NULL, ' 1 ', ' 17 ', ' 3105 ', NULL, NULL, ' 0 ', 1, '2004-06-20', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (59226, ' MARIA LUISA YAM ACOSTA ', NULL, NULL, ' 11 SN.JOAQUIN ', NULL, ' 1 ', ' 17 ', ' 3110 ', NULL, NULL, ' 0 ', 1, '2004-06-20', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (59227, ' MARIA CANDELARIA YAM ACOSTA ', NULL, NULL, ' 11 SN.JOAQUIN II ', NULL, ' 1 ', ' 17 ', ' 3115 ', NULL, NULL, ' 0 ', 1, '2004-06-20', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(59228, ' RUBEN TEC ', NULL, NULL, ' C. 25 BENITO JUAREZ ', NULL, ' 1 ', ' 14 ', ' 212 ', NULL, NULL, ' 0 ', 1, '2004-06-20', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(59228, ' RUBEN TEC ', NULL, NULL, ' C. 25 BENITO JUAREZ ', NULL, ' 1 ', ' 14 ', ' 212 ', NULL, NULL, ' 0 ', 1, '2004-06-20', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (59229, ' MARIA ELENA MEX ', NULL, NULL, ' 18 # 211-C X 29 Y 31 ', NULL, ' 1 ', ' 1 ', ' 2669 ', NULL, NULL, ' 0 ', 1, '2004-07-22', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (59230, ' CAROLINA BELTRAN ', NULL, NULL, ' 18 # 211 X 29 Y 31 ', NULL, ' 1 ', ' 1 ', ' 2685 ', NULL, NULL, ' 90209447 ', 1, '2004-07-22', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -8140,7 +8073,7 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (59462, ' ANTONIO SERRALTA CETINA ', NULL, NULL, ' 26 X 23 Y 21 ', NULL, ' 1 ', ' 22 ', ' 2215 ', NULL, NULL, ' 0 ', 1, '2004-12-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (59463, ' ENELIA MARTIN CAMARA ', NULL, NULL, ' 26 X 23 Y 21 ', NULL, ' 1 ', ' 22 ', ' 2170 ', NULL, NULL, ' 0 ', 1, '2004-12-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (59464, ' ANDRES HAU TZEC ', NULL, NULL, ' 26 X 23 Y 21 ', NULL, ' 1 ', ' 22 ', ' 2200 ', NULL, NULL, ' 0 ', 1, '2004-12-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(59465, ' JUAN CARRILLO CETINA ', NULL, NULL, ' 26 X 23 Y 31 ', NULL, ' 1 ', ' 22 ', ' 2220 ', NULL, NULL, ' 0 ', 1, '2004-12-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(59465, ' JUAN CARRILLO CETINA ', NULL, NULL, ' 26 X 23 Y 31 ', NULL, ' 1 ', ' 22 ', ' 2220 ', NULL, NULL, ' 0 ', 1, '2004-12-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
 (59466, ' ROCIO DEL CARMEN DZAY ', NULL, NULL, ' 26 X 23 Y 21 ', NULL, ' 1 ', ' 22 ', ' 2190 ', NULL, NULL, ' 0 ', 1, '2004-12-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (59467, ' FERNANDO ARBEY VAZQUEZ ', NULL, NULL, ' 26 X 23 Y 21 ', NULL, ' 1 ', ' 22 ', ' 2185 ', NULL, NULL, ' 0 ', 1, '2004-12-23', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
@@ -8382,11 +8315,8 @@ INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Dir
 (59704, ' HUMBERTO ARGUELLO QUIAL ', NULL, NULL, ' 19 X 30 Y 32 ', NULL, ' 1 ', ' 22 ', ' 400 ', NULL, NULL, ' 0 ', 1, '2004-12-26', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (59705, ' LUIS CARRILLO CETINA ', NULL, NULL, ' 19 X 30 Y 32 ', NULL, ' 1 ', ' 22 ', ' 375 ', NULL, NULL, ' 0 ', 1, '2004-12-26', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
 (59706, ' ROQUE J. CANO TEP ', NULL, NULL, ' 19 X 30 Y 32 ', NULL, ' 1 ', ' 22 ', ' 371 ', NULL, NULL, ' 0 ', 1, '2004-12-26', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de'),
-(59707, ' LIGIA G. CANO TEP ', NULL, NULL, ' 19 X 30 Y 32 ', NULL, ' 1 ', ' 22 ', ' 370 ', NULL, NULL, ' 0 ', 1, '2004-12-26', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
+(59707, ' LIGIA G. CANO TEP ', NULL, NULL, ' 19 X 30 Y 32 ', NULL, ' 1 ', ' 22 ', ' 370 ', NULL, NULL, ' 0 ', 1, '2004-12-26', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 INSERT INTO `Usuarios` (`Num_Servicio`, `Nombre`, `ApellidoP`, `ApellidoM`, `Direccion`, `NumCasa`, `Sector`, `Ruta`, `Progresivo`, `ID_Colonia`, `Referencia`, `Medidor`, `ID_Tarifa`, `Fecha_Registro`, `Latitud`, `Longitud`, `ID_Ciudadano`, `DeudaActual`, `ReciboDigital`, `ID_Estatus`, `Comentarios`, `Migro_Digital`, `Suspencion`, `Up_date`, `Link_QR`, `Importado`) VALUES
-(59708, ' FRANCISCO HERNANDEZ GARCIA ', NULL, NULL, ' 19 X 28 Y 30 ', NULL, ' 1 ', ' 22 ', ' 365 ', NULL, NULL, ' 0 ', 1, '2004-12-26', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');
-COMMIT;
+(59708, ' FRANCISCO HERNANDEZ GARCIA ', NULL, NULL, ' 19 X 28 Y 30 ', NULL, ' 1 ', ' 22 ', ' 365 ', NULL, NULL, ' 0 ', 1, '2004-12-26', NULL, NULL, NULL, 0, 1, 4, NULL, 1, NULL, NULL, NULL, '   by  Blitzc0de');;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+SET FOREIGN_KEY_CHECKS = 1;

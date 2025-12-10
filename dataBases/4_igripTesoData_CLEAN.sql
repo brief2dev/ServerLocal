@@ -1,48 +1,13 @@
--- phpMyAdmin SQL Dump
--- version 5.2.2
--- https://www.phpmyadmin.net/
---
--- Servidor: mysql
--- Tiempo de generación: 19-10-2025 a las 18:22:06
--- Versión del servidor: 9.2.0
--- Versión de PHP: 8.2.27
+SET FOREIGN_KEY_CHECKS = 0;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `SE_Tesoreria`
---
-CREATE DATABASE IF NOT EXISTS `SE_Tesoreria` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 USE `SE_Tesoreria`;
-
---
--- Volcado de datos para la tabla `Caja_T`
---
 
 INSERT INTO `Caja_T` (`ID_Caja_T`, `Motivo`) VALUES
 (1, 'Ingreso'),
-(2, 'Retiro');
-
---
--- Volcado de datos para la tabla `Solicitudes`
---
-
+(2, 'Retiro');;
 INSERT INTO `Solicitudes` (`ID_Solicitud`, `Fecha_Solicitud`, `Fecha_Creacion`, `Fecha_Aceptado`, `Asunto`, `ID_Colaborador`, `ID_Departamento`, `ID_Autoriza`, `Comentario`, `Respuesta`, `Solventacion1`, `ID_Salida`, `Estatus`, `ID_Administracion`) VALUES
 (1, '2025-07-14', '2025-07-14', NULL, 'Solicitud de materiales', 1, 4, NULL, 'Por medio de la presente, la que suscribe Licda. Maritza de Jesus Escamilla Valle, Directora del departamento de Catastro de Santa Elena, se dirige a usted con el debido respeto para solicitar materiales mismos que servirán para desempeñar las labores del departamento y su correcto orden le solicito la sig. lista de materiales:\r\n\r\n•	3 Postick\r\n•	3 Cajas Clip pequeños\r\n•	1 Paquete de Lapiceros (Color azul)\r\n•	3 Paquete de hojas tamaño carta\r\n•	1 Bote de pintura Roja en aerosol\r\n•	1 Bote de pintura Negro en aerosol\r\n•	1 Paquete de marcadores para pintaron\r\n•	1 Cinta para medir de 100m\r\n•	1 Trapeador y jalador\r\n•	1 Pinol\r\n•	1 Paquete de carpetas Verde', NULL, NULL, NULL, 1, 3),
-(2, '2025-10-20', '2025-10-14', NULL, 'nueva computadora', 1, 4, NULL, 'erjhery djh jhdbj jerjuhyg', NULL, NULL, NULL, 1, 3);
-
---
--- Volcado de datos para la tabla `Teso_Lic_Tarifa`
---
-
+(2, '2025-10-20', '2025-10-14', NULL, 'nueva computadora', 1, 4, NULL, 'erjhery djh jhdbj jerjuhyg', NULL, NULL, NULL, 1, 3);;
 INSERT INTO `Teso_Lic_Tarifa` (`ID_Lic`, `Giro`, `Expedicion`, `Renovacion`, `importado`) VALUES
 (1, 'Agencia de vehiculos compra/venta', '12224', '10688', 'by <⚡︎> Blitzc0de'),
 (2, 'Agencia de viajes', '9359', '2924', 'by <⚡︎> Blitzc0de'),
@@ -151,9 +116,6 @@ INSERT INTO `Teso_Lic_Tarifa` (`ID_Lic`, `Giro`, `Expedicion`, `Renovacion`, `im
 (105, 'Tlapalerías - Ferretería', '7369', '2211', 'by <⚡︎> Blitzc0de'),
 (106, 'Veterrinarias', '1096', '641', 'by <⚡︎> Blitzc0de'),
 (107, 'Videoclubes en general', '2456', '737', 'by <⚡︎> Blitzc0de'),
-(108, 'Zapaterías taller y expendios', '4299', '1299', 'by <⚡︎> Blitzc0de');
-COMMIT;
+(108, 'Zapaterías taller y expendios', '4299', '1299', 'by <⚡︎> Blitzc0de');;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+SET FOREIGN_KEY_CHECKS = 1;
