@@ -28,7 +28,6 @@ USE `SE_Municipio`;
 --
 -- Estructura de tabla para la tabla `Administraciones`
 --
-
 CREATE TABLE `Administraciones` (
   `ID_Administracion` int NOT NULL,
   `Nombre` varchar(60) DEFAULT NULL,
