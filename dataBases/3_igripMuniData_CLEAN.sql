@@ -4,7 +4,7 @@ USE `SE_Municipio`;
 
 INSERT INTO `Administraciones` (`ID_Administracion`, `Nombre`, `Partido`, `Alcalde`, `Suplente`, `Secretario`, `Direccion`, `RFC`, `CP`, `FotoAlcalde`, `Logo`, `Portada`, `Licencia`, `Prefijo`, `PreUser`, `Web`, `Tel`, `Color`, `ColorDark`, `Fecha_Admin`, `Fecha_Inicio`, `Fecha_Termino`, `Concluido`) VALUES
 (2, 'MUNICIPIO DE SANTA ELENA', 'PAN', 'Galdino Poot Moreno', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'https://santaelena.gob.mx', NULL, '#078ed6', '#046091', '2021-2024', '2021-09-01', '2024-09-01', 1),
-(3, 'MUNICIPIO DE SANTA ELENA', 'PAN', 'Galdino Poot Moreno', 'Jose Tec Koyoc', 'Luis Antonio Kauil Cetina', 'PALACIO MUNICIPAL COL. CENTRO', 'MSE850101IT1', '97890', NULL, NULL, NULL, 0, 'Santa Elena', 'SE', 'https://santaelena.gob.mx', NULL, NULL, NULL, '2024-2027', '2024-09-01', NULL, 0);;
+(3, 'MUNICIPIO TICUL', 'MORENA', 'BETO PARRA', '', '', 'PALACIO MUNICIPAL COL. CENTRO', 'MSE850101IT1', '97890', NULL, NULL, NULL, 0, 'TICUL', 'TCL', 'https://ticul.gob.mx', NULL, '#780539', '#59032a', '2024-2027', '2024-09-01', NULL, 0);;
 INSERT INTO `Api_Boleano` (`ID_Boleano`, `Nombre`) VALUES
 (1, 'NO'),
 (2, 'SI');;
@@ -39,6 +39,7 @@ INSERT INTO `Ciudadanos_Card` (`ID_Card`, `Numero`, `Mes`, `Ano`, `CVV`, `Tipo`,
 (3, '1234567890123456', 22, 99, 543, NULL, 151, NULL);;
 INSERT INTO `Colaboradores` (`ID_Colaborador`, `ID_Ciudadano`, `ID_Departamento`, `ID_Puesto`, `Usuario`, `Pass`, `PsD`, `FechaRegistro`, `Acceso`, `Baja`, `FechaBaja`, `Comentario`, `Escolaridad`, `Cedula`, `Correo`, `Foto`, `FB`, `TW`, `INST`, `Sueldo`, `ID_Administracion`) VALUES
 (1, 1, 4, 1, 'mariel.santos', 'gDYQkb4xnY1lXDka2QZhQA==', '12', '2024-09-01', 2, 1, NULL, '555', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1200, 3),
+(2, 1, 11, 1, 'mariel.santos', '$2y$10$gpDMyn7lYQrviII9kGnYEeMLgFvrOxQFE1Q4ltZfdsONDQ/eyqMK2', '12', '2024-09-01', 2, 1, NULL, '555', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1200, 3),
 (5, 1, 1, 1, 'system', 'gDYQkb4xnY1lXDka2QZhQA==', '12', '2024-09-01', 2, 1, NULL, '555', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1200, 3),
 (9, 2, 4, 95, 'miguel.escamilla', 'Yeq8c3lh82kwYwNXaOb7Nw==', '8xIT', '2025-07-04', 2, 1, NULL, '', 'Lic', NULL, NULL, NULL, NULL, NULL, NULL, 0, 3),
 (10, 7, 4, 1, 'israel.huchim', 'zb7HuIoxEXtsTEiCcinyFw==', '1uED', '2025-07-04', 2, 1, NULL, '', 'Lic', NULL, NULL, NULL, NULL, NULL, NULL, 0, 3),
