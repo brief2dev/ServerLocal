@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  web:
+    container_name: SE_Web
+    build: .
+    restart: unless-stopped
+    volumes:
+      - ./Host:/var/www/html
+      - ./php.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./apache.conf:/etc/apache2/conf-enabled/000-custom.conf
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html/public
+    expose:
+      - "80"
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: SE_MYSQL
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+      - ./initdb:/docker-entrypoint-initdb.d
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
+
+volumes:
+  mysql_data:

@@ -1,7 +1,5 @@
 version: "3.9"
-#Quitar los contanier_name en produccion?
 services:
-
   php-apache:
     container_name: apchDev
     build: .
