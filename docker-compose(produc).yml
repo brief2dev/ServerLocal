@@ -1,7 +1,8 @@
 version: "3.9"
+
 services:
   web:
-    container_name: SE_Web
+    container_name: se_web
     build: .
     restart: unless-stopped
     volumes:
@@ -14,10 +15,13 @@ services:
       - "80"
     depends_on:
       - mysql
+    networks:
+      - proxy
+      - internal
 
   mysql:
     image: mysql:8.0
-    container_name: SE_MYSQL
+    container_name: se_mysql
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -25,9 +29,17 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - ./mysql_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
       - ./initdb:/docker-entrypoint-initdb.d
       - ./my.cnf:/etc/mysql/conf.d/my.cnf
+    networks:
+      - internal
 
 volumes:
   mysql_data:
+
+networks:
+  proxy:
+    external: true
+  internal:
+    driver: bridge
