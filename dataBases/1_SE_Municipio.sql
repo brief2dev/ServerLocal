@@ -115,6 +115,8 @@ CREATE TABLE `Audiencias` (
   `Cantidad` varchar(12) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Autorizado` int DEFAULT NULL,
   `FechaSolicitud` date DEFAULT NULL,
+  `FechaEntrega` date DEFAULT NULL,
+  `FechaCancelacion` date DEFAULT NULL,
   `Comentarios` varchar(400) DEFAULT NULL,
   `ID_AudiDept` int DEFAULT NULL,
   `ID_AudiApoy` int DEFAULT NULL,
@@ -123,21 +125,21 @@ CREATE TABLE `Audiencias` (
   `ID_Corte` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
-INSERT INTO `Audiencias` (`ID_Audiencia`, `ID_Ciudadano`, `Motivo`, `Cantidad`, `Autorizado`, `FechaSolicitud`, `Comentarios`, `ID_AudiDept`, `ID_AudiApoy`, `ID_Estatus`, `Corte`, `ID_Corte`) VALUES
-(1, 1, 'Leche para su bebe', '450', 450, '2020-03-20', '', 2, 1, 4, 1, 3),
-(2, 1, 'test aceptado', '2500', 0, '2020-03-21', 'Aceptado pase a tesoreria', 7, 6, 4, 1, 3),
-(3, 1, 'test cancelado', '30000', 0, '2020-03-21', 'cancelado por falta de recursos', 7, 6, 5, 1, 3),
-(4, 1, 'asjjcbsdb', '600', 0, '2021-03-26', '', 4, 3, 5, 1, 3),
-(7, 1, 'qwrorewgwhgoyg', '200', 200, '2021-03-26', '', 2, 3, 5, 1, 3),
-(8, 1, 'Apoyo a Colegiatura', '3800', 0, '2021-06-12', '', 3, 3, 1, 1, 3),
-(9, 1, 'para TC', '6000', 5500, '2021-06-15', NULL, 7, 3, 4, 1, 3),
-(10, 1, 'Junta para tratar situaciones de trabajo', '0', 0, '2021-06-15', NULL, 8, 9, 4, 1, 3),
-(11, 1, 'para comprar cosas', '500', 300, '2022-06-21', '300 no hay mas', 7, 1, 4, 1, 4),
-(18, 2, 'gfjhgdjg f fghj', '400', NULL, '2026-03-17', NULL, 5, 4, NULL, 0, NULL),
-(19, 2, 'gfjhgdjg f fghj', '400', NULL, '2026-03-17', NULL, 5, 4, NULL, 0, NULL),
-(20, 2, 'gfjhgdjg f fghj', '400', NULL, '2026-03-17', NULL, 5, 4, NULL, 0, NULL),
-(21, 1, 'rgfrdgfd', '3333', NULL, '2026-03-18', NULL, 15, 9, NULL, 0, NULL),
-(22, 5, 'dfgfdg fgd fdgdfg dfghd f', '22222', NULL, '2026-03-23', NULL, 14, 5, 1, 0, NULL);
+INSERT INTO `Audiencias` (`ID_Audiencia`, `ID_Ciudadano`, `Motivo`, `Cantidad`, `Autorizado`, `FechaSolicitud`, `FechaEntrega`, `FechaCancelacion`, `Comentarios`, `ID_AudiDept`, `ID_AudiApoy`, `ID_Estatus`, `Corte`, `ID_Corte`) VALUES
+(1, 1, 'Leche para su bebe', '450', 450, '2020-03-20', NULL, NULL, '', 2, 1, 4, 1, 3),
+(2, 1, 'test aceptado', '2500', 0, '2020-03-21', NULL, NULL, 'Aceptado pase a tesoreria', 7, 6, 4, 1, 3),
+(3, 1, 'test cancelado', '30000', 0, '2020-03-21', NULL, NULL, 'cancelado por falta de recursos', 7, 6, 5, 1, 3),
+(4, 1, 'asjjcbsdb', '600', 0, '2021-03-26', NULL, NULL, '', 4, 3, 5, 1, 3),
+(7, 1, 'qwrorewgwhgoyg', '200', 200, '2021-03-26', NULL, NULL, '', 2, 3, 5, 1, 3),
+(8, 1, 'Apoyo a Colegiatura', '3800', 0, '2021-06-12', NULL, NULL, '', 3, 3, 1, 1, 3),
+(9, 1, 'para TC', '6000', 5500, '2021-06-15', NULL, NULL, NULL, 7, 3, 4, 1, 3),
+(10, 1, 'Junta para tratar situaciones de trabajo', '0', 0, '2021-06-15', NULL, NULL, NULL, 8, 9, 4, 1, 3),
+(11, 1, 'para comprar cosas', '500', 300, '2022-06-21', NULL, NULL, '300 no hay mas', 7, 1, 4, 1, 4),
+(18, 2, 'gfjhgdjg f fghj', '400', NULL, '2026-03-17', NULL, NULL, NULL, 5, 4, NULL, 0, NULL),
+(19, 2, 'gfjhgdjg f fghj', '400', NULL, '2026-03-17', NULL, NULL, NULL, 5, 4, NULL, 0, NULL),
+(20, 2, 'gfjhgdjg f fghj', '400', NULL, '2026-03-17', NULL, NULL, NULL, 5, 4, NULL, 0, NULL),
+(21, 1, 'rgfrdgfd', '3333', NULL, '2026-03-18', NULL, NULL, NULL, 15, 9, NULL, 0, NULL),
+(22, 5, 'dfgfdg fgd fdgdfg dfghd f', '22222', 250, '2026-03-23', '2026-03-15', NULL, 'solo para eso hay', 14, 5, 4, 0, NULL);
 
 CREATE TABLE `Ciudadanos` (
   `ID_Ciudadano` int NOT NULL,
