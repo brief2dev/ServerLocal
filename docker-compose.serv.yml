@@ -3,11 +3,6 @@ version: "3.9"
 services:
   app:
     build: .
-    labels:
-      - "project=igrip"
-      - "municipio=se"
-      - "municipio_nombre=Santa Elena"
-      - "service=app"
     ports:
       - "${APP_PORT}:80"
     volumes:
@@ -19,34 +14,47 @@ services:
     restart: unless-stopped
     networks:
       - infra_net
+    labels:
+      - "project=${PROJECT}"
+      - "municipio=${MUNICIPIO_CODE}"
+      - "municipio_nombre=${MUNICIPIO_NAME}"
+      - "service=app"
+      - "env=${ENV}"
 
   mysql:
     image: mysql:8.0
-    labels:
-      - "project=igrip"
-      - "municipio=se"
-      - "municipio_nombre=Santa Elena"
-      - "service=database"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
-      - ./dataBases:/docker-entrypoint-initdb.d 
+      - ./dataBases:/docker-entrypoint-initdb.d
       - ./my.cnf:/etc/mysql/conf.d/my.cnf
     restart: unless-stopped
     networks:
       - infra_net
+    labels:
+      - "project=${PROJECT}"
+      - "municipio=${MUNICIPIO_CODE}"
+      - "municipio_nombre=${MUNICIPIO_NAME}"
+      - "service=database"
+      - "env=${ENV}"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    restart: always
+    restart: unless-stopped
     environment:
       PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     networks:
       - infra_net
+    labels:
+      - "project=${PROJECT}"
+      - "municipio=${MUNICIPIO_CODE}"
+      - "municipio_nombre=${MUNICIPIO_NAME}"
+      - "service=admin"
+      - "env=${ENV}"
 
 volumes:
   db_data:
