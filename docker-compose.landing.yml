@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  webs-company:
+  static-sites:
     build: .
     restart: unless-stopped
     volumes:
