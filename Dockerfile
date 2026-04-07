@@ -1,5 +1,6 @@
-FROM php:8.4-apache
+FROM php:8.2-apache
 
+RUN a2enmod vhost_alias
 # Instalar dependencias de PHP y librerías necesarias para GD y herramientas útiles
 RUN apt-get update && apt-get install -y \
     libicu-dev \
