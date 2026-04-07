@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   websCompany:
-    image: php:8.4-apache
+    build: .
     restart: unless-stopped
     volumes:
       - ./sites:/var/www/html
