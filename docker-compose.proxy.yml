@@ -53,42 +53,6 @@ services:
     networks:
       - infra_net
 
-  cloudflare-ddns-santaelena:
-    image: oznu/cloudflare-ddns:latest
-    container_name: cf-ddns-santaelena
-    restart: unless-stopped
-    environment:
-      - API_KEY=${TOKEN_CLOUDFLARE}
-      - ZONE=santaelena.gob.mx
-      - SUBDOMAIN=*
-      - PROXIED=true
-    networks:
-      - infra_net
-
-  cloudflare-ddns-powersports:
-    image: oznu/cloudflare-ddns:latest
-    container_name: cf-ddns-powersports
-    restart: unless-stopped
-    environment:
-      - API_KEY=${TOKEN_CLOUDFLARE}
-      - ZONE=powersports.top
-      - SUBDOMAIN=*
-      - PROXIED=true
-    networks:
-      - infra_net
-
-  cloudflare-ddns-torrenegra:
-    image: oznu/cloudflare-ddns:latest
-    container_name: cf-ddns-torrenegra
-    restart: unless-stopped
-    environment:
-      - API_KEY=${TOKEN_CLOUDFLARE}
-      - ZONE=torrenegraabogados.com
-      - SUBDOMAIN=*
-      - PROXIED=true
-    networks:
-      - infra_net
-
 networks:
   infra_net:
     name: infra_net
