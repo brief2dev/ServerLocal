@@ -56,7 +56,7 @@ Contenedor basado en una imagen personalizada de PHP + Apache, construida desde 
 3. Listo — no se requiere reiniciar el contenedor.
 ```
     
-## Run Locally
+## Levantar Servicios
 
 copiar carpeta a servidor ssh enla raiz(windows)
 
