@@ -5,7 +5,7 @@ set -e  # si algo falla, se detiene
 echo "Instalando Server Producccion"
 
 BASE_DIR=$(pwd)
-DOCKER_DIR="$BASE_DIR/docker"
+DOCKER_DIR="$BASE_DIR"
 
 echo "Creando estructura base..."
 

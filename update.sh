@@ -5,7 +5,7 @@ set -e
 echo "Actualizando servicios Docker..."
 
 BASE_DIR=$(pwd)
-DOCKER_DIR="$BASE_DIR/docker"
+DOCKER_DIR="$BASE_DIR"
 
 for dir in $(find $DOCKER_DIR -name "docker-compose.yml" -exec dirname {} \;); do
     echo "Actualizando: $dir"
