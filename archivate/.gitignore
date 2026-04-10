@@ -1,0 +1,6 @@
+.DS_Store
+Apps
+Host/*
+!Host/exports_all.php
+FlutterSDK/
+FlutterSDK

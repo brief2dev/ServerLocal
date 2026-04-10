@@ -1,6 +1,120 @@
+# =========================
+
+# 🚫 DOCKER RUNTIME DATA
+
+# =========================
+
+# Nginx Proxy Manager
+
+infra/npm/data/
+infra/npm/letsencrypt/
+
+# Portainer
+
+infra/portainer/data/
+
+# Netdata
+
+infra/netdata/config/
+infra/netdata/lib/
+infra/netdata/cache/
+
+# Cloudflare DDNS (si genera archivos)
+
+infra/dnscloudflare/data/
+
+# =========================
+
+# 🚫 WEBAPPS DATA
+
+# =========================
+
+# Datos internos de servicios (ej: CDN, APIs)
+
+infra/webapps/**/data/
+infra/webapps/**/logs/
+infra/webapps/**/tmp/
+
+# =========================
+
+# 🚫 BASES DE DATOS
+
+# =========================
+
+infra/**/mysql/
+infra/**/postgres/
+infra/**/mongo/
+infra/**/redis/
+
+# Dumps o backups internos
+
+*.sql
+*.dump
+
+# =========================
+
+# 🚫 LOGS
+
+# =========================
+
+*.log
+logs/
+docker/**/logs/
+
+# =========================
+
+# 🚫 BACKUPS GENERADOS
+
+# =========================
+
+backups/
+*.tar.gz
+
+# =========================
+
+# 🚫 VARIABLES DE ENTORNO
+
+# =========================
+
+.env
+.env.*
+!.env.example
+
+# =========================
+
+# 🚫 SISTEMA / IDE
+
+# =========================
+
 .DS_Store
-Apps
-Host/*
-!Host/exports_all.php
-FlutterSDK/
-FlutterSDK
+Thumbs.db
+
+# VSCode
+
+.vscode/
+
+# JetBrains
+
+.idea/
+
+# =========================
+
+# 🚫 PERMISOS / TEMPORALES
+
+# =========================
+
+*.pid
+*.sock
+*.tmp
+
+# =========================
+
+# ✅ EXCEPCIONES IMPORTANTES
+
+# =========================
+
+# Mantener estructura
+
+!docker/static-sites/sites/.gitkeep
+!docker/webapps/**/.gitkeep
+!docker/infra/**/.gitkeep
