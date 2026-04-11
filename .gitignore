@@ -1,6 +1,6 @@
 # =========================
 
-# 🚫 DOCKER RUNTIME DATA
+#  DOCKER RUNTIME DATA
 
 # =========================
 
@@ -25,7 +25,7 @@ infra/dnscloudflare/data/
 
 # =========================
 
-# 🚫 WEBAPPS DATA
+#  WEBAPPS DATA
 
 # =========================
 
@@ -37,7 +37,7 @@ infra/webapps/**/tmp/
 
 # =========================
 
-# 🚫 BASES DE DATOS
+#  BASES DE DATOS
 
 # =========================
 
@@ -63,7 +63,7 @@ docker/**/logs/
 
 # =========================
 
-# 🚫 BACKUPS GENERADOS
+#  BACKUPS GENERADOS
 
 # =========================
 
@@ -72,13 +72,13 @@ backups/
 
 # =========================
 
-# 🚫 VARIABLES DE ENTORNO
+#  VARIABLES DE ENTORNO
 
 # =========================
 
 # =========================
 
-# 🚫 SISTEMA / IDE
+#  SISTEMA / IDE
 
 # =========================
 
@@ -95,7 +95,7 @@ Thumbs.db
 
 # =========================
 
-# 🚫 PERMISOS / TEMPORALES
+#  PERMISOS / TEMPORALES
 
 # =========================
 
@@ -105,7 +105,7 @@ Thumbs.db
 
 # =========================
 
-# ✅ EXCEPCIONES IMPORTANTES
+# EXCEPCIONES IMPORTANTES
 
 # =========================
 
