@@ -261,9 +261,9 @@ En ambos casos (landing y sistema):
 
 * Activar:
 
-  * ✅ Request a new SSL Certificate
-  * ✅ Force SSL
-  * ✅ HTTP/2 Support
+  * Request a new SSL Certificate
+  * Force SSL
+  * HTTP/2 Support
 
 * Email:
 
