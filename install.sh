@@ -15,6 +15,7 @@ echo "Creando estructura base..."
 mkdir -p $DOCKER_DIR/static-sites/sites
 mkdir -p $DOCKER_DIR/webapps
 mkdir -p $DOCKER_DIR/infra
+mkdir -p $DOCKER_DIR/backups
 
 # =========================
 # INFRA (persistencia)
