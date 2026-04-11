@@ -2,9 +2,9 @@
 
 Infraestructura modular basada en Docker para desplegar:
 
-* 🌐 Sitios estáticos (landings)
-* ⚙️ Webapps / APIs
-* 🧱 Infraestructura (Nginx Proxy Manager, Portainer, Netdata, etc.)
+* Sitios estáticos (landings)
+* Webapps / APIs
+* Infraestructura (Nginx Proxy Manager, Portainer, Netdata, etc.)
 
 Diseñado para ser **escalable, reproducible y fácil de instalar**.
 
@@ -21,6 +21,8 @@ docker/
  │
  ├── webapps/          # Aplicaciones (APIs, sistemas, etc.)
  │    └── cdn/
+ │         └── docker-compose.yml
+ |  └── proyecto/
  │         └── docker-compose.yml
  │
  └── infra/            # Servicios base + persistencia
