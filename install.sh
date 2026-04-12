@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e  # si algo falla, se detiene
+set -e  # si falla, se detiene
 
 echo "Instalando Server Producccion"
 
